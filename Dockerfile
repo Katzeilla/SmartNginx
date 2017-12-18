@@ -6,12 +6,13 @@ VOLUME /configs
 
 VOLUME /data
 
-COPY nginx.conf /usr/local/nginx/conf/
+COPY /inside/configs/nginx/nginx.conf /usr/local/nginx/conf/
 
-RUN pkg_depend='autoconf libtool automake build-essential curl wget libpcre3 libpcre3-dev zlib1g-dev unzip git python ' && \
+RUN pkg_depend='cron autoconf libtool automake build-essential curl wget libpcre3 libpcre3-dev zlib1g-dev unzip git python ' && \
     apt-get update && \
     apt-get upgrade -y && \
     apt-get install -y $pkg_depend && \
+    curl https://get.acme.sh | sh && \
     mkdir ~/temp && \
     cd ~/temp && \
     wget -O nginx-ct.zip -c https://github.com/grahamedgecombe/nginx-ct/archive/v1.3.2.zip && \
