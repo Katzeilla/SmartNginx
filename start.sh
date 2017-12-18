@@ -3,7 +3,7 @@
 cd ./inside
 dir=$(pwd)
 
-if [ $1 == debug ]
+if [[ $1 == debug ]]
 	then
 		flag='bash'
 		echo 'Debug Mode'
@@ -17,6 +17,7 @@ docker run -it \
   --mount type=bind,source=$dir/configs/,target=/configs/ \
   --mount type=bind,source=$dir/data/,target=/data/ \
   --mount type=bind,source=$dir/logs/,target=/logs/ \
-  --mount type=bind,source=$dir/configs/verynginx/config.json,target=/opt/verynginx/verynginx/configs/config.json \
+  --mount type=bind,source=$dir/configs/verynginx/,target=/opt/verynginx/verynginx/configs/ \
   --mount type=bind,source=$dir/configs/nginx/nginx.conf,target=/usr/local/nginx/conf/nginx.conf \
   nginx:v2 $flag
+
