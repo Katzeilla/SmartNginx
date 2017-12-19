@@ -3,15 +3,20 @@
 cd ./inside
 dir=$(pwd)
 
-if [[ $1 == debug ]]
+stop_nginx() 
+{
+    docker stop nginx
+    docker rm nginx
+}
+
+  if [[ $1 == debug ]]
 	then
 		flag='bash'
 		echo 'Debug Mode'
 
     elif [[ $1 == stop ]]; 
     then
-        docker stop nginx
-        docker rm nginx
+        stop_nginx
 
     elif [[ $1 == test ]];
     then
@@ -21,7 +26,7 @@ if [[ $1 == debug ]]
         ls $dir/scripts/
         ls $dir/logs/
         ls $dir/configs/verynginx/
-    else    
+    else
 		echo 'Normal Mode'
 	fi
 
@@ -37,3 +42,9 @@ docker run -it \
   --name nginx \
   nginx:v4 $flag
 
+if [[ $? == 125 ]];
+    then
+    echo "Another Nginx already start, stop it......"  
+    stop_nginx
+    ./main.sh
+  fi
