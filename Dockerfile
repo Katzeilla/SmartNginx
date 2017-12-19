@@ -75,6 +75,6 @@ RUN pkg_depend='cron autoconf libtool automake build-essential curl wget libpcre
     rm -rf ~/temp  && \
     /usr/local/nginx/sbin/nginx -t
 
-CMD ["/usr/local/nginx/sbin/nginx", "-g", "daemon off;"]
+ENTRYPOINT ["/scripts/entrypoint.sh"]
 
 EXPOSE 80

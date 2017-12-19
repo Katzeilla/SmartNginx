@@ -30,4 +30,4 @@ start_nginx ()
   start_cron
   ps aux
   start_nginx
-  pa aux
+  ps aux
