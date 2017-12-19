@@ -7,7 +7,21 @@ if [[ $1 == debug ]]
 	then
 		flag='bash'
 		echo 'Debug Mode'
-	else
+
+    elif [[ $1 == stop ]]; 
+    then
+        docker stop nginx
+        docker rm nginx
+
+    elif [[ $1 == test ]];
+    then
+        echo Test Mode
+        ls $dir/configs/
+        ls $dir/data/
+        ls $dir/scripts/
+        ls $dir/logs/
+        ls $dir/configs/verynginx/
+    else    
 		echo 'Normal Mode'
 	fi
 
@@ -21,5 +35,5 @@ docker run -it \
   --mount type=bind,source=$dir/configs/verynginx/,target=/opt/verynginx/verynginx/configs/ \
   --mount type=bind,source=$dir/configs/nginx/nginx.conf,target=/usr/local/nginx/conf/nginx.conf \
   --name nginx \
-  nginx:v3 $flag
+  nginx:v4 $flag
 
