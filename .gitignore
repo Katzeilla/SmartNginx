@@ -1,1 +1,3 @@
-inside/log/*/*.log
+*_log
+inside/configs/verynginx/encrypt_seed.json
+
