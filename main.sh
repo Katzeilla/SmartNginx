@@ -2,6 +2,7 @@
 
 cd ./inside
 dir=$(pwd)
+cd ..
 
 stop_nginx() 
 {
