@@ -4,7 +4,7 @@ cd ./inside
 dir=$(pwd)
 cd ..
 
-stop_nginx() 
+stop_nginx()
 {
     docker stop nginx
     docker rm nginx
@@ -12,10 +12,10 @@ stop_nginx()
 
   if [[ $1 == debug ]]
 	then
-		flag='bash'
+		flag='--entrypoint /bin/bash'
 		echo 'Debug Mode'
 
-    elif [[ $1 == stop ]]; 
+    elif [[ $1 == stop ]];
     then
         stop_nginx
 
@@ -31,6 +31,7 @@ stop_nginx()
 		echo 'Normal Mode'
 	fi
 
+
 docker run -it \
   -p 80:80 \
   -p 443:443 \
@@ -41,11 +42,12 @@ docker run -it \
   --mount type=bind,source=$dir/configs/verynginx/,target=/opt/verynginx/verynginx/configs/ \
   --mount type=bind,source=$dir/configs/nginx/nginx.conf,target=/usr/local/nginx/conf/nginx.conf \
   --name nginx \
-  nginx:v4 $flag
+  $flag \
+  nginx:v4
 
 if [[ $? == 125 ]];
     then
-    echo "Another Nginx already start, stop it......"  
+    echo "Another Nginx already start, stop it......"
     stop_nginx
-    ./main.sh
+    ./main.sh $1
   fi

@@ -7,7 +7,7 @@ start_cron ()
   echo "Starting cron......"
 
   /usr/sbin/cron
-  
+
   cron_status=$?
 
   if [ $cron_status -ne 0 ]; then
@@ -17,7 +17,7 @@ fi
 
 }
 
-start_nginx () 
+start_nginx ()
 {
   echo "Starting Nginx......"
 
@@ -31,10 +31,10 @@ start_nginx ()
   else
     exit 0;
   fi
-}  
+}
+
 
   start_cron
   ps aux
   start_nginx
   ps aux
-
