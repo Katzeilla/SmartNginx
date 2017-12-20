@@ -1,5 +1,7 @@
 ## SmartNginx
 
+> 尚未开发完毕，请不要使用。
+
 SmartNginx 是一个整合了多种常用工具的 Docker 镜像。
 
 功能：
