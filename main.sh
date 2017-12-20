@@ -6,8 +6,8 @@ cd ..
 
 stop_nginx()
 {
-    docker stop nginx
-    docker rm nginx
+    docker stop smartnginx
+    docker rm smartnginx
 }
 
 show_usage()
@@ -58,9 +58,9 @@ docker run -it \
   --mount type=bind,source=$dir/logs/,target=/logs/ \
   --mount type=bind,source=$dir/configs/verynginx/,target=/opt/verynginx/verynginx/configs/ \
   --mount type=bind,source=$dir/configs/nginx/nginx.conf,target=/usr/local/nginx/conf/nginx.conf \
-  --name nginx \
+  --name smartnginx \
   $flag \
-  nginx:v4
+  smartnginx:v4
 
 if [[ $? == 125 ]];
     then
