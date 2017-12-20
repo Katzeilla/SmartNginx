@@ -10,26 +10,43 @@ stop_nginx()
     docker rm nginx
 }
 
-  if [[ $1 == debug ]]
-	then
+show_usage()
+{
+        echo "This is a bash script for manage SmartNginx"
+        echo "./main [ACTION]"
+        echo
+        echo "ACTION:"
+        echo "test                    ls all mount dir of host"
+        echo "stop                    Stop Nginx"
+        echo "debug                   Start in to bash"
+        echo "--help, -h ,help        Show this message"
+        echo
+        echo "If no [ACTION], start normally"
+}
+
+  if [[ $1 == debug ]]; then
 		flag='--entrypoint /bin/bash'
 		echo 'Debug Mode'
 
-    elif [[ $1 == stop ]];
-    then
+elif [[ $1 == stop ]];then
         stop_nginx
+        exit
 
-    elif [[ $1 == test ]];
-    then
+elif [[ $1 == test ]]; then
         echo Test Mode
         ls $dir/configs/
         ls $dir/data/
         ls $dir/scripts/
         ls $dir/logs/
         ls $dir/configs/verynginx/
-    else
-		echo 'Normal Mode'
-	fi
+
+elif [[ $1 == --help ]] || [[ $1 == -h ]] || [[ $1 == help ]]; then
+        show_usage
+        exit
+
+else
+	    echo 'Normal Mode'
+fi
 
 
 docker run -it \
