@@ -1,17 +1,19 @@
 #! /bin/bash
 
-echo "Starting SmartNginx......"
+date=[$(date)]
+
+echo $date "Starting SmartNginx......"
 
 start_cron ()
 {
-  echo "Starting cron......"
+  echo $date "Starting cron......"
 
   /usr/sbin/cron
 
   status=$?
 
   if [[ $status -ne 0 ]]; then
-      echo "Failed to start cron: exit $status"
+      echo $date "Failed to start cron: exit $status"
       exit $status
   fi
 
@@ -19,14 +21,14 @@ start_cron ()
 
 start_nginx ()
 {
-  echo "Starting Nginx......"
+  echo $date "Starting Nginx......"
   
   /usr/local/nginx/sbin/nginx
   
   status=$?
 
   if [[ $status -ne 0 ]]; then
-     echo "Failed to start Nginx: exit $status"
+     echo $date "Failed to start Nginx: exit $status"
      exit $status
   fi
 }
@@ -58,21 +60,21 @@ while /bin/true; do
 
     if [[ $cron_status -ne 0 ]]; then
         let cron_restart_count++
-        echo "cron exited with code $cron_status"
+        echo $date "cron exited with code $cron_status"
         
         # Avoid "4/3 attempt"
         if [[ $cron_restart_count < "4" ]]; then
-        echo "Attempt to restart, this is the $cron_restart_count/3 attempt"
+        echo $date "Attempt to restart, this is the $cron_restart_count/3 attempt"
         fi
    fi
 
     if [[ $nginx_status -ne 0 ]]; then
         let nginx_restart_count++ 
-        echo "Nginx exited with code $nginx_status"
+        echo $date "Nginx exited with code $nginx_status"
         
         # Avoid "4/3 attempt"
         if [[ $nginx_restart_count < "4" ]]; then
-        echo "Attempt to restart, this is the $nginx_restart_count/3 attempt"
+        echo $date "Attempt to restart, this is the $nginx_restart_count/3 attempt"
         fi
     fi
 
@@ -85,7 +87,7 @@ while /bin/true; do
 
 
     if [[ $nginx_restart_count -gt 3 ]] || [[ $cron_restart_count -gt 3 ]]; then
-        echo "To many restart, exit now......"
+        echo $date "To many restart, exit now......"
         exit 1;
     fi
 

@@ -4,6 +4,9 @@ cd ./inside
 dir=$(pwd)
 cd ..
 
+date="[$(date)]"
+
+
 stop_nginx()
 {
     docker stop smartnginx
@@ -25,15 +28,15 @@ show_usage()
 }
 
   if [[ $1 == debug ]]; then
-		flag='--entrypoint /bin/bash'
-		echo 'Debug Mode'
+        flag='--entrypoint /bin/bash'
+		echo $date 'Debug Mode'
 
 elif [[ $1 == stop ]];then
         stop_nginx
         exit
 
 elif [[ $1 == test ]]; then
-        echo Test Mode
+        echo $date Test Mode
         ls $dir/configs/
         ls $dir/data/
         ls $dir/scripts/
@@ -45,7 +48,7 @@ elif [[ $1 == --help ]] || [[ $1 == -h ]] || [[ $1 == help ]]; then
         exit
 
 else
-	    echo 'Normal Mode'
+	    echo $date 'Normal Mode'
 fi
 
 
@@ -64,7 +67,7 @@ docker run -it \
 
 if [[ $? == 125 ]];
     then
-    echo "Another Nginx already start, stop it......"
+    echo $date "Another Nginx already start, stop it......"
     stop_nginx
     ./main.sh $1
   fi
