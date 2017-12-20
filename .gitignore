@@ -1,5 +1,6 @@
 *_log
 *.swp
+*.pid
 ! /inside/logs/www
 inside/configs/verynginx/encrypt_seed.json
 
