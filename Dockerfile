@@ -73,6 +73,7 @@ RUN pkg_depend='procps cron autoconf libtool automake build-essential curl wget 
     python install.py install verynginx && \
     cd ~/ && \
     rm -rf ~/temp  && \
+    mkdir /data/nginx/ && \
     /usr/local/nginx/sbin/nginx -t
 
 ENTRYPOINT ["/scripts/entrypoint.sh"]
