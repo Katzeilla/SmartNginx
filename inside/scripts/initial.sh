@@ -22,7 +22,7 @@ while read i; do
     ./gen_cert.sh $i
   else
     echo $date "https config file for '$i' not found, generate it......"
-    ./gen_cert.sh $1 ./gen_config.sh
+    ./gen_cert.sh $i ./gen_config.sh
   fi
 
   if [ -d /logs/web/$i ]; then
