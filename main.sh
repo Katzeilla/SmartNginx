@@ -32,6 +32,7 @@ show_usage()
 		echo $date 'Debug Mode'
 
 elif [[ $1 == stop ]];then
+        echo $date 'Stoping SmartNginx......'
         stop_nginx
         exit
 
