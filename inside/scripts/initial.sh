@@ -4,16 +4,6 @@ date=[$(date)]
 
 domain_list=/configs/smartnginx/domain_list
 
-# Usage:
-# gen_conf <location of config file> <domain name>
-
-
-gen_conf()
-{
-  cp /configs/nginx/web.conf.template $1
-  sed -i -e "s/<domain_name>/$2/g" $1
-}
-
 echo $date "Reading from" $domain_list
 
 while read i; do
@@ -26,11 +16,13 @@ while read i; do
     mkdir /configs/web/$i
   fi
 
-  if [ -f /configs/web/$i/*.conf ]; then
-    echo $date "Found .conf file for '$i', skip mkdir"
+  if [ -f /configs/web/$i/$i_https.conf ]; then
+    echo $date "Found https config file for '$i', skip generate"
+    echo $date "Start issue cert for '$1'"
+    ./gen_cert.sh $i
   else
-    echo $date ".conf file for '$i' not found, generate it......"
-    gen_conf /configs/web/$i/$i.conf $i
+    echo $date "https config file for '$i' not found, generate it......"
+    ./gen_cert.sh $1 ./gen_config.sh
   fi
 
   if [ -d /logs/web/$i ]; then
