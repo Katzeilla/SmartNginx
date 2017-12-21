@@ -25,6 +25,7 @@ gen_conf()
 
 }
 
-install_cert() {
+install_cert()
+{
 
 }
