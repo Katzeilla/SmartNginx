@@ -38,7 +38,7 @@ start_nginx
 
 echo $date "Run initial script......"
 
-./initial.sh
+/scripts/initial.sh
 
 nginx_restart_count=0
 cron_restart_count=0
