@@ -63,7 +63,7 @@ docker run -it \
   --mount type=bind,source=$dir/configs/nginx/nginx.conf,target=/usr/local/nginx/conf/nginx.conf \
   --name smartnginx \
   $flag \
-  smartnginx:v4
+  smartnginx:v5
 
 if [[ $? == 125 ]];
     then
