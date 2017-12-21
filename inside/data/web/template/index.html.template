@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to SmartNginx!</title>
+<style>
+    body {
+        width: 35em;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+</style>
+</head>
+<body>
+<h1>Welcome to SmartNginx!</h1>
+
+<p>If you see this page, this web server is working.</p>
+<p>You have to edit /configs/* to add your own config.</p>
+<p>Nginx will auto reload to apply config for every 3 seconds, this can be change in /scripts/entrypoint.sh</p>
+
+<p>For more info please refer to <a href="https://github.com/Katzeilla/SmartNginx">GitHun repo</a>.<br/>
+</body>
+</html>
