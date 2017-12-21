@@ -64,7 +64,9 @@ while /bin/true; do
         
         # Avoid "4/3 attempt"
         if [[ $cron_restart_count < "4" ]]; then
+        start_cron
         echo $date "Attempt to restart, this is the $cron_restart_count/3 attempt"
+        start_cron
         fi
    fi
 
@@ -75,6 +77,7 @@ while /bin/true; do
         # Avoid "4/3 attempt"
         if [[ $nginx_restart_count < "4" ]]; then
         echo $date "Attempt to restart, this is the $nginx_restart_count/3 attempt"
+        start_nginx
         fi
     fi
 
