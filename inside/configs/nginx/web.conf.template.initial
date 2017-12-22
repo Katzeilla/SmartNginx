@@ -1,0 +1,30 @@
+
+   server {
+        listen       80;
+        server_name  <domain_name>;
+    	include /opt/verynginx/verynginx/nginx_conf/in_server_block.conf;
+        #charset koi8-r;
+
+        access_log  /logs/web/<domain_name>/access_log ;
+
+        location / {
+            root  /data/web/<domain_name> ;
+            index  index.html index.htm;
+        }
+
+        #error_page  404              /404.html;
+
+        # redirect server error pages to the static page /50x.html
+        #
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            root   html;
+      
+    }
+        location /.well-known/acme-challenge/ {
+        alias         /data/acme.sh/<domain_name>/challenges/.well-known/acme-challenge/;
+        try_files     $uri =404;
+    }
+
+}
+
