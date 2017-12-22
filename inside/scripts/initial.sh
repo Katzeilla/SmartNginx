@@ -9,9 +9,15 @@ if [ -d /data/nginx ]; then
   else
     echo $date "Config PID directory for Nginx not found, create it......"
     mkdir -p /data/nginx
+
+elif [ -d /logs ]; then
+  echo $date "Found log directory, skip mkdir"
+else
+  echo $date "Create log directory for Nginx not found, create it......"
+  mkdir -p /logs
 fi
 
-echo $date "Reading from" $domain_list
+  echo $date "Reading from" $domain_list
 
 while read i; do
     echo $date "Found domain name" $i
