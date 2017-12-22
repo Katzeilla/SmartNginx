@@ -1,7 +1,7 @@
 *_log
 *.swp
 *.pid
-! /inside/logs
-! /inside/logs/www
+! inside/logs
+! inside/logs/www
 ! .gitignore
 inside/configs/verynginx/encrypt_seed.json
