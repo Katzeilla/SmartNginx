@@ -3,5 +3,5 @@
 ! inside/logs
 ! inside/logs/www
 ! .gitignore
-inside/logs/*/*_log
+inside/logs/web/example.org/
 inside/configs/verynginx/encrypt_seed.json
