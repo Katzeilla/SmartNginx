@@ -1,5 +1,7 @@
 #! /bin/bash
 
+date=[$(date)]
+
 if [[ $2 == gen_initial_conf ]]; then
   gen_initial_conf
   gen_cert
