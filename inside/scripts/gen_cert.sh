@@ -4,15 +4,6 @@ date=[$(date)]
 
 alias acme.sh=/root/.acme.sh/acme.sh
 
-if [[ $2 == gen_initial_conf ]]; then
-  gen_initial_conf
-  gen_cert
-  gen_conf
-  reload_nginx
-else
-  gen_cert
-  reload_nginx
-fi
 
 reload_nginx()
 {
@@ -73,4 +64,14 @@ gen_conf()
   cp /configs/nginx/web.conf.template /configs/web/$1/$1_final.conf
   sed -i -e "s/<domain_name>/$1/g" ../configs/web/$1/$1_final.conf
 }
+
+if [[ $2 == gen_initial_conf ]]; then
+  gen_initial_conf
+  gen_cert
+  gen_conf
+  reload_nginx
+else
+  gen_cert
+  reload_nginx
+fi
 
