@@ -13,7 +13,7 @@ while read i; do
     echo $date "Found config directory for '$i', skip mkdir"
   else
     echo $date "Config directory for '$i' not found, create it......"
-    mkdir /configs/web/$i
+    mkdir -p /configs/web/$i
   fi
   
   if [ -d /data/acme.sh/$i/challenges/.well-known/acme-challenge/ ]; then
@@ -34,10 +34,10 @@ while read i; do
   if [ -f /configs/web/$i/$i_final.conf ]; then
     echo $date "Found https config file for '$i', skip generate"
     echo $date "Start issue cert for '$i'"
-    ./gen_cert.sh $i
+    /scripts/gen_cert.sh $i
   else
     echo $date "https config file for '$i' not found, generate it......"
-    ./gen_cert.sh $i gen_initial_conf
+    /scripts/gen_cert.sh $i gen_initial_conf
   fi
 
   if [ -d /logs/web/$i ]; then
