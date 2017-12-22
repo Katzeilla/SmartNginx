@@ -15,10 +15,25 @@ while read i; do
     echo $date "Config directory for '$i' not found, create it......"
     mkdir /configs/web/$i
   fi
+  
+  if [ -d /data/acme.sh/$i/challenges/.well-known/acme-challenge/ ]; then
+    echo $date "Found certificate directory for '$i', skip mkdir"
+  else
+    echo $date "acme-challenge directory for '$i' not found, create it......"
+    mkdir -p /data/acme.sh/$i/challenges/.well-known/acme-challenge/ 
+  fi
 
+  if [ -d /data/cert/$i/rsa/sct -a -d /data/cert/$i/ecc/sct ]; then
+    echo $date "Found certificate directory for '$i', skip mkdir"
+  else
+    echo $date "Certificates directory for '$i' not found, create it......"
+    mkdir -p /data/cert/$i/rsa/sct
+    mkdir -p /data/cert/$i/ecc/sct
+  fi
+    
   if [ -f /configs/web/$i/$i_final.conf ]; then
     echo $date "Found https config file for '$i', skip generate"
-    echo $date "Start issue cert for '$1'"
+    echo $date "Start issue cert for '$i'"
     ./gen_cert.sh $i
   else
     echo $date "https config file for '$i' not found, generate it......"
