@@ -16,7 +16,7 @@ while read i; do
     mkdir /configs/web/$i
   fi
 
-  if [ -f /configs/web/$i/$i_https.conf ]; then
+  if [ -f /configs/web/$i/$i_final.conf ]; then
     echo $date "Found https config file for '$i', skip generate"
     echo $date "Start issue cert for '$1'"
     ./gen_cert.sh $i

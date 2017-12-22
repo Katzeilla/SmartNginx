@@ -22,14 +22,14 @@ gen_initial_conf()
 
 gen_cert()
 {
-  acme.sh 
+  acme.sh  
   rm /configs/web/$1/$1.conf
 }
 
 gen_conf()
 {
-  cp ../configs/nginx/web.conf.template ../configs/web/$1/$1_https.conf
-  sed -i -e "s/<domain_name>/$1/g" ../configs/web/$1/$1_https.conf
+  cp ../configs/nginx/web.conf.template ../configs/web/$1/$1_final.conf
+  sed -i -e "s/<domain_name>/$1/g" ../configs/web/$1/$1_final.conf
 }
 
 install_cert()
