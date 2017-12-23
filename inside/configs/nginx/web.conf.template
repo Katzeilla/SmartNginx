@@ -6,18 +6,18 @@ server {
 
     ssl_ct               on;
 
-    ssl_certificate      /data/cert/<domain_name>/ecc/fullchain.cer;
-    ssl_certificate_key  /data/cert/<domain_name>/ecc/<domain_name>.key;
+    ssl_certificate      /data/cert/<domain_name>/ecc/cert.pem;
+    ssl_certificate_key  /data/cert/<domain_name>/ecc/key.pem;
     ssl_ct_static_scts   /data/cert/<domain_name>/ecc/sct/;
 
-    ssl_certificate      /data/cert/<domain_name>/ras/fullchain.cer;
-    ssl_certificate_key  /data/cert/<domain_name>/ras/<domain_name>.key;
+    ssl_certificate      /data/cert/<domain_name>/ras/cert.pem;
+    ssl_certificate_key  /data/cert/<domain_name>/ras/key.pem;
     ssl_ct_static_scts   /data/cert/<domain_name>/ras/sct/;
 
 
     # openssl dhparam -out dhparams.pem 2048
     # https://weakdh.org/sysadmin.html
-    ssl_dhparam          /home/jerry/www/ssl/dhparams.pem;
+    # ssl_dhparam          /home/jerry/www/ssl/dhparams.pem;
 
 
     ssl_ciphers              EECDH+CHACHA20:EECDH+CHACHA20-draft:EECDH+ECDSA+AES128:EECDH+aRSA+AES128:RSA+AES128:EECDH+ECDSA+AES256:EECDH+aRSA+AES256:RSA+AES256:EECDH+ECDSA+3DES:EECDH+aRSA+3DES:RSA+3DES:!MD5;
