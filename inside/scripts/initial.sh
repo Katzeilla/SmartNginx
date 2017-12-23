@@ -23,6 +23,13 @@ while read i; do
     mkdir -p /configs/web/$i
   fi
   
+  if [ -d /logs/web/$i ]; then
+    echo $date "Log directory for '$i' found, skip mkdir"
+  else
+    echo $date "Log directory for '$i' not found, create it......"
+    mkdir -p /logs/web/$i
+  fi
+  
   if [ -d /data/acme.sh/$i/challenges/.well-known/acme-challenge/ ]; then
     echo $date "Found certificate directory for '$i', skip mkdir"
   else
@@ -47,12 +54,6 @@ while read i; do
     /scripts/gen_cert.sh $i gen_initial_conf
   fi
 
-  if [ -d /logs/web/$i ]; then
-    echo $date "Log directory for '$i' found, skip mkdir"
-  else
-    echo $date "Log directory for '$i' not found, create it......"
-    mkdir -p /logs/web/$i
-  fi
 
 
 done < $domain_list
