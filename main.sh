@@ -52,7 +52,7 @@ else
 	    echo $date 'Normal Mode'
 fi
 
-if [ -f $dir/logs ]; then
+if [ ! -f $dir/logs ]; then
 
   echo $date mkdir for logs......
   mkdir -p $dir/logs
