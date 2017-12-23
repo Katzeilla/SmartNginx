@@ -37,11 +37,11 @@ while read i; do
     mkdir -p /data/acme.sh/$i/challenges/.well-known/acme-challenge/ 
   fi
 
-  if [ -d /data/cert/$i/rsa/sct -a -d /data/cert/$i/ecc/sct ]; then
+  if [ -d /data/cert/$i/ras/sct -a -d /data/cert/$i/ecc/sct ]; then
     echo $date "Found certificate directory for '$i', skip mkdir"
   else
     echo $date "Certificates directory for '$i' not found, create it......"
-    mkdir -p /data/cert/$i/rsa/sct
+    mkdir -p /data/cert/$i/ras/sct
     mkdir -p /data/cert/$i/ecc/sct
   fi
     
