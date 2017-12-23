@@ -18,25 +18,6 @@ gen_initial_conf()
 
 gen_cert()
 {
-  /root/.acme.sh/acme.sh \
-    --issue \
-    -d $1 \
-    -w /data/acme.sh/$1/challenges/ \
-    --keylength ec-384
-  
-  /root/.acme.sh/acme.sh \
-    --install-cert \
-    -d $1 \
-    --ecc \
-    --key-file /data/cert/$1/ecc/key.pem \
-    --fullchain-file /data/cert/$1/ecc/cert.pem
- 
-    echo $date [$1] Submit ECC certificate to Google icarus ct log server......
-    ct-submit ct.googleapis.com/icarus < /data/cert/$1/ecc/cert.pem > /data/cert/$1/ecc/sct/icarus.sct
-    echo $date [$1] Submit ECC certificate to Digicert CT1 log server......
-    ct-submit ct1.digicert-ct.com/log < /data/cert/$1/ecc/cert.pem > /data/cert/$1/ecc/sct/digicert.sct
-    echo $date [$1] Submit ECC certificate to COMODO sabre ct log server......
-    ct-submit sabre.ct.comodo.com < /data/cert/$1/ecc/cert.pem > /data/cert/$1/ecc/sct/sabre.sct
 
     /root/.acme.sh/acme.sh \
     --issue \
@@ -56,6 +37,26 @@ gen_cert()
     ct-submit ct1.digicert-ct.com/log < /data/cert/$1/ras/cert.pem > /data/cert/$1/ras/sct/digicert.sct
     echo $date [$1] Submit RAS certificate to COMODO sabre ct log server......
     ct-submit sabre.ct.comodo.com < /data/cert/$1/ras/cert.pem > /data/cert/$1/ras/sct/sabre.sct
+  
+  /root/.acme.sh/acme.sh \
+    --issue \
+    -d $1 \
+    -w /data/acme.sh/$1/challenges/ \
+    --keylength ec-384
+  
+  /root/.acme.sh/acme.sh \
+    --install-cert \
+    -d $1 \
+    --ecc \
+    --key-file /data/cert/$1/ecc/key.pem \
+    --fullchain-file /data/cert/$1/ecc/cert.pem
+ 
+    echo $date [$1] Submit ECC certificate to Google icarus ct log server......
+    ct-submit ct.googleapis.com/icarus < /data/cert/$1/ecc/cert.pem > /data/cert/$1/ecc/sct/icarus.sct
+    echo $date [$1] Submit ECC certificate to Digicert CT1 log server......
+    ct-submit ct1.digicert-ct.com/log < /data/cert/$1/ecc/cert.pem > /data/cert/$1/ecc/sct/digicert.sct
+    echo $date [$1] Submit ECC certificate to COMODO sabre ct log server......
+    ct-submit sabre.ct.comodo.com < /data/cert/$1/ecc/cert.pem > /data/cert/$1/ecc/sct/sabre.sct
 
   rm /configs/web/$1/$1.conf
 }
