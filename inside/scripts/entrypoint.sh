@@ -32,13 +32,13 @@ start_nginx ()
      exit $status
   fi
 }
+echo $date "Run initial script......"
+
+/scripts/initial.sh
 
 start_cron
 start_nginx
 
-echo $date "Run initial script......"
-
-/scripts/initial.sh
 
 nginx_restart_count=0
 cron_restart_count=0
@@ -53,7 +53,7 @@ auto_reload()
     done 
 }
 
-auto_reload &
+# auto_reload &
 
 while /bin/true; do
 
