@@ -1,0 +1,78 @@
+server {
+    
+    include /opt/verynginx/verynginx/nginx_conf/in_server_block.conf;
+
+    listen               443 ssl http2;
+
+    server_name          <domain_name>;
+    server_tokens        off;
+
+    ssl_ct               on;
+
+    ssl_certificate      /data/cert/<domain_name>/ecc/cert.pem;
+    ssl_certificate_key  /data/cert/<domain_name>/ecc/key.pem;
+    ssl_ct_static_scts   /data/cert/<domain_name>/ecc/sct/;
+
+    ssl_certificate      /data/cert/<domain_name>/ras/cert.pem;
+    ssl_certificate_key  /data/cert/<domain_name>/ras/key.pem;
+    ssl_ct_static_scts   /data/cert/<domain_name>/ras/sct/;
+
+
+    # openssl dhparam -out dhparams.pem 2048
+    # https://weakdh.org/sysadmin.html
+    # ssl_dhparam          /home/jerry/www/ssl/dhparams.pem;
+
+
+    ssl_ciphers              EECDH+CHACHA20:EECDH+CHACHA20-draft:EECDH+ECDSA+AES128:EECDH+aRSA+AES128:RSA+AES128:EECDH+ECDSA+AES256:EECDH+aRSA+AES256:RSA+AES256:EECDH+ECDSA+3DES:EECDH+aRSA+3DES:RSA+3DES:!MD5;
+
+    ssl_prefer_server_ciphers  on;
+
+    ssl_protocols              TLSv1 TLSv1.1 TLSv1.2;
+
+    ssl_session_cache          shared:SSL:50m;
+    ssl_session_timeout        1d;
+
+    ssl_session_tickets        on;
+
+    ssl_stapling               on;
+    ssl_stapling_verify        on;
+
+
+    access_log               /logs/web/<domain_name>/https.log;
+
+    add_header               Strict-Transport-Security "max-age=31536000; includeSubDomains; preload";
+
+    add_header               X-Frame-Options DENY;
+
+    add_header               X-Content-Type-Options nosniff;
+    
+    # Pin Let`s encrypt + AddTrust External CA Root
+
+    add_header               Public-Key-Pins 'pin-sha256="YLh1dUR9y6Kja30RrAn7JKnbQG/uEtLMkBgFF2Fuihg="; pin-sha256="lCppFqbkrlJ3EcVFAkeip0+44VaoJUymbnOaEUk7tEU="; max-age=2592000; includeSubDomains';
+
+    location / {
+      root  /data/web/<domain_name>/;
+      index index.html;
+    }
+
+}  
+   
+
+server {
+    server_name       <domain_name>;
+    server_tokens     off;
+    
+    listen            80;
+
+    access_log        /logs/web/<domain_name>/http.log;
+
+    location /.well-known/acme-challenge/ {
+        alias         /data/acme.sh/<domain_name>/challenges/.well-known/acme-challenge/;
+        try_files     $uri =404;
+    }
+
+
+    location / {
+        rewrite       https://<domain_name>/$1 permanent;
+    }
+}
