@@ -38,9 +38,9 @@ while read i; do
   fi
   
   if [ -d /data/web/$i ]; then
-    echo $date "Found config directory for '$i', skip mkdir"
+    echo $date "Found data directory for '$i', skip mkdir"
   else
-    echo $date "Config directory for '$i' not found, create it......"
+    echo $date "Data directory for '$i' not found, create it......"
     mkdir -p /data/web/$i
     cp /data/template/index.html.template  /data/web/$i/index.html
 
