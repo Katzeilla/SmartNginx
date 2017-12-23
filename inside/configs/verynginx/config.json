@@ -122,7 +122,7 @@
   "uri_rewrite_enable":true,
   "admin":[{
       "enable":true,
-      "password":"TESTPW",
+      "password":"verynginx",
       "user":"verynginx"
     }],
   "summary_collect_rule":[],
