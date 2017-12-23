@@ -23,6 +23,15 @@ while read i; do
     mkdir -p /configs/web/$i
   fi
   
+  if [ -d /data/web/$i ]; then
+    echo $date "Found config directory for '$i', skip mkdir"
+  else
+    echo $date "Config directory for '$i' not found, create it......"
+    mkdir -p /data/web/$i
+    cp /data/template/index.html.template  /data/web/$i/index.html
+
+  fi
+  
   if [ -d /logs/web/$i ]; then
     echo $date "Log directory for '$i' found, skip mkdir"
   else
