@@ -27,6 +27,7 @@ gen_cert()
   /root/.acme.sh/acme.sh \
     --install-cert \
     -d $1 \
+    --ecc \
     --key-file /data/cert/$1/ecc/key.pem \
     --fullchain-file /data/cert/$1/ecc/cert.pem
  
