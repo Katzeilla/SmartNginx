@@ -2,7 +2,11 @@
 
 date=[$(date)]
 
-
+if [[ count == "" ]]; then
+  count=0
+else
+  let "count++"
+fi
 
 stop_nginx()
 {
@@ -61,16 +65,28 @@ gen_cert()
   rm /configs/web/$1/$1.conf
 }
 
-gen_conf()
+gen_main_conf()
 {
-  cp /configs/nginx/web.conf.template /configs/web/$1/$1_final.conf
+  cp /configs/nginx/web.conf.template.main /configs/web/$1/$1_final.conf
   sed -i -e "s/<domain_name>/$1/g" /configs/web/$1/$1_final.conf
+
+}
+
+gen_sub_conf()
+{
+  cp /configs/nginx/web.conf.template.sub /configs/web/$1/$1_final.conf
+  sed -i -e "s/<domain_name>/$1/g" /configs/web/$1/$1_final.conf
+
 }
 
 if [[ $2 == gen_initial_conf ]]; then
   gen_initial_conf $1
   gen_cert $1
-  gen_conf $1
+  if [[ $count == 0 ]]; then
+    gen_main_conf
+  else
+    gen_sub_conf
+  fi
   stop_nginx
 else
   gen_cert $1
