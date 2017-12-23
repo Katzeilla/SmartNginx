@@ -2,7 +2,7 @@
 
 date=[$(date)]
 
-echo This is dm !!!!!!!!!!!!!!! $1 
+
 
 reload_nginx()
 {
