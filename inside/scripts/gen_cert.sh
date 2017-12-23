@@ -4,9 +4,9 @@ date=[$(date)]
 
 
 
-reload_nginx()
+stop_nginx()
 {
-  /usr/local/nginx/sbin/nginx -s reload
+  /usr/local/nginx/sbin/nginx -s stop
 }
 
 gen_initial_conf()
@@ -71,9 +71,9 @@ if [[ $2 == gen_initial_conf ]]; then
   gen_initial_conf $1
   gen_cert $1
   gen_conf $1
-  reload_nginx
+  stop_nginx
 else
   gen_cert $1
-  reload_nginx
+  stop_nginx
 fi
 
