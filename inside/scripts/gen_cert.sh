@@ -13,6 +13,7 @@ gen_initial_conf()
 {
   cp /configs/nginx/web.conf.template.initial /configs/web/$1/$1.conf
   sed -i -e "s/<domain_name>/$1/g" /configs/web/$1/$1.conf
+  /usr/local/nginx/sbin/nginx
 }
 
 gen_cert()
