@@ -15,8 +15,7 @@
 
 <p>If you see this page, this web server is working.</p>
 <p>You have to edit /configs/* to add your own config.</p>
-<p>Nginx will auto reload to apply config for every 3 seconds, this can be change in /scripts/entrypoint.sh</p>
 
-<p>For more info please refer to <a href="https://github.com/Katzeilla/SmartNginx">GitHun repo</a>.<br/>
+<p>For more info please refer to <a href="https://github.com/Katzeilla/SmartNginx">GitHub repo</a>.<br/>
 </body>
 </html>
