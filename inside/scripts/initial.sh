@@ -73,7 +73,7 @@ while read i; do
     echo $date "Start issue cert for '$i'"
     /scripts/gen_cert.sh $i
   else
-    echo $date "https config file for '$i' not found, generate it......"
+    echo $date "Final config file for '$i' not found, generate it......"
     /scripts/gen_cert.sh $i gen_initial_conf
   fi
 
