@@ -90,9 +90,9 @@ if [[ $2 == gen_initial_conf ]]; then
   #gen_initial_conf $1
   #gen_cert $1
   if [[ $run_count == 1 ]]; then
-    gen_main_conf
+    gen_main_conf $1
   else
-    gen_sub_conf
+    gen_sub_conf $1
   fi
   stop_nginx
 else
