@@ -87,8 +87,8 @@ gen_sub_conf()
 }
 
 if [[ $2 == gen_initial_conf ]]; then
-  gen_initial_conf $1
-  gen_cert $1
+  #gen_initial_conf $1
+  #gen_cert $1
   if [[ $run_count == 1 ]]; then
     gen_main_conf
   else
@@ -96,7 +96,8 @@ if [[ $2 == gen_initial_conf ]]; then
   fi
   stop_nginx
 else
-  gen_cert $1
+  #gen_cert $1
   stop_nginx
 fi
 
+echo Count is $run_count
