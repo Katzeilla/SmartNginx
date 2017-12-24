@@ -2,11 +2,18 @@
 
 date=[$(date)]
 
-if [[ count == "" ]]; then
-  count=0
+if [[ -f run_count ]]; then
+    # Read run_count from file
+    run_count=$(<run_count)
 else
-  let "count++"
+    echo 0 > run_count
+    run_count=$(<run_count)
 fi
+    
+(( run_count++ ))
+
+# Save new value of run_count to file
+echo $run_count > run_count
 
 stop_nginx()
 {
@@ -82,7 +89,7 @@ gen_sub_conf()
 if [[ $2 == gen_initial_conf ]]; then
   gen_initial_conf $1
   gen_cert $1
-  if [[ $count == 0 ]]; then
+  if [[ $run_count == 1 ]]; then
     gen_main_conf
   else
     gen_sub_conf

@@ -80,3 +80,5 @@ while read i; do
 
 
 done < $domain_list
+
+rm run_count
