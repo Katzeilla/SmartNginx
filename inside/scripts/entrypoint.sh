@@ -55,6 +55,9 @@ auto_reload()
 
 # auto_reload &
 
+health_check ()
+{
+
 while /bin/true; do
 
     ps aux | grep nginx | grep -q -v grep
@@ -101,3 +104,7 @@ while /bin/true; do
     sleep 60
 
   done
+
+  }
+
+  health_check
