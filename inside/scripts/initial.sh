@@ -2,6 +2,9 @@
 
 date=[$(date)]
 
+initial_veranginx()
+{
+
 grep '"password":"verynginx",' /configs/verynginx/config.json -q
 
 if [[ $? == 0 ]]; then
@@ -14,7 +17,9 @@ if [[ $? == 0 ]]; then
   echo "Password:" $randompw
   echo "####################################################################################"
 fi
+}
 
+initial_veranginx
 
 domain_list=/configs/smartnginx/domain_list
   
