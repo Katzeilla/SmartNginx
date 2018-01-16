@@ -15,10 +15,10 @@ RUN pkg_depend='procps cron golang autoconf libtool automake build-essential cur
     curl https://get.acme.sh | sh && \
     mkdir ~/temp && \
     cd ~/temp && \
-    
+    \    
     wget -O nginx-ct.zip -c https://github.com/grahamedgecombe/nginx-ct/archive/v1.3.2.zip && \
     unzip nginx-ct.zip && \
- 
+    \
     git clone https://github.com/bagder/libbrotli && \
     cd libbrotli && \
     ./autogen.sh && \
@@ -26,19 +26,19 @@ RUN pkg_depend='procps cron golang autoconf libtool automake build-essential cur
     make && \
     make install && \
     cd  ../ && \
-
+    \
     wget -O ct-submit.zip -c https://github.com/grahamedgecombe/ct-submit/archive/v1.1.2.zip && \
     unzip ct-submit.zip && \
     cd ct-submit-1.1.2 && \
     go build && \
     mv ./ct-submit-1.1.2 /bin/ct-submit && \
     cd ../ && \
-
+    \
     git clone https://github.com/google/ngx_brotli.git && \
     cd ngx_brotli && \
     git submodule update --init && \
     cd ../ && \
-    
+    \
     git clone https://github.com/cloudflare/sslconfig.git &&  \
     wget -O openssl.tar.gz -c https://github.com/openssl/openssl/archive/OpenSSL_1_0_2k.tar.gz && \
     tar zxf openssl.tar.gz && \
@@ -46,7 +46,7 @@ RUN pkg_depend='procps cron golang autoconf libtool automake build-essential cur
     cd openssl && \
     patch -p1 < ../sslconfig/patches/openssl__chacha20_poly1305_draft_and_rfc_ossl102j.patch && \ 
     cd ../ && \
-    
+    \
     wget https://luajit.org/download/LuaJIT-2.0.5.zip && \
     unzip LuaJIT-2.0.5.zip  && \
     cd LuaJIT-2.0.5 && \
@@ -55,18 +55,18 @@ RUN pkg_depend='procps cron golang autoconf libtool automake build-essential cur
     export LUAJIT_LIB=/usr/local/lib && \
     export LUAJIT_INC=/usr/local/include/luajit-2.0/ && \
     cd ../ && \
-    
+    \
     wget 'https://github.com/simpl/ngx_devel_kit/archive/v0.3.0.zip' && \
     unzip v0.3.0.zip && \
-    
+    \
     wget https://github.com/openresty/lua-nginx-module/archive/v0.10.7.zip && \
     unzip v0.10.7.zip && \
     cd lua-nginx-module-0.10.7/ && \
-    
+    \
     curl 'https://raw.githubusercontent.com/macports/macports-ports/master/www/nginx/files/patch-src-ngx_http_lua_headers.c.diff' > patch-src-ngx_http_lua_headers.c.diff && \
     patch -p1 < patch-src-ngx_http_lua_headers.c.diff && \
     cd .. && \
-    
+    \
     wget -c https://nginx.org/download/nginx-1.11.13.tar.gz && \
     tar zxf nginx-1.11.13.tar.gz && \
     cd nginx-1.11.13/ && \
@@ -83,13 +83,13 @@ RUN pkg_depend='procps cron golang autoconf libtool automake build-essential cur
 		--with-http_gzip_static_module && \
     make && \
     make install &&\
-    
+    \ 
     cd ~/temp && \
     git clone https://github.com/alexazhou/VeryNginx && \
     cd VeryNginx/ && \
     python install.py install verynginx && \
     cd ~/ && \
-    
+    \
     rm -rf ~/temp  && \
     mkdir /data/nginx/ && \
     /usr/local/nginx/sbin/nginx -t
