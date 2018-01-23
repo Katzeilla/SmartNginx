@@ -2,7 +2,7 @@
 
 date=[$(date)]
 
-initial_veranginx()
+initial_verynginx()
 {
 
 grep '"password":"verynginx",' /configs/verynginx/config.json -q
@@ -13,13 +13,13 @@ if [[ $? == 0 ]]; then
   echo "Login to your VeryNginx dashboard later at https://your_domain/verynginx/index.html"
   randompw=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
   sed -i -e "s/\"password\":\"verynginx\",/\"password\":\"$randompw\",/g" /configs/verynginx/config.json
-  echo "Username: Verynginx"
+  echo "Username: verynginx"
   echo "Password:" $randompw
   echo "####################################################################################"
 fi
 }
 
-initial_veranginx
+initial_verynginx
 
 domain_list=/configs/smartnginx/domain_list
   
