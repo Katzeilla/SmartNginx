@@ -16,7 +16,7 @@ sort $domain_list > $sorted_domain_list
 
 comm -13 $maintained_domain_list $sorted_domain_list > $new_domain_list
 
-# Get domains maintained by acme.sh and write to $maintained_domain_list 
+# Get domains not maintained by acme.sh and write to $maintained_domain_list 
 
 echo $date Preprocess domain list......
 
