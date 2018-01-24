@@ -19,7 +19,7 @@ if [[ $? == 0 ]]; then
 fi
 }
 
-initial_verynginx
+/scripts/preprocess.sh
 
 domain_list=/configs/smartnginx/new_domain_list
   
