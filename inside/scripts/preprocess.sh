@@ -10,7 +10,7 @@ sorted_domain_list=/configs/smartnginx/sorted_domain_list
 
 domain_list=/configs/smartnginx/domain_list
 
-acme.sh --list | tail -n +2 | cut -f 1 | sort -u > $maintained_domain_list
+~/.acme.sh/acme.sh --list | tail -n +2 | cut -f 1 | sort -u > $maintained_domain_list
 
 sort $domain_list > $sorted_domain_list
 
