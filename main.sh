@@ -45,6 +45,11 @@ elif [[ $1 == test ]]; then
         ls $dir/configs/verynginx/
         exit
 
+elif [[ $1 == build ]]; then
+        echo $date Start build smartnginx:v5
+        docker build . --tag smartnginx:v5
+        exit
+
 elif [[ $1 == --help ]] || [[ $1 == -h ]] || [[ $1 == help ]]; then
         show_usage
         exit
