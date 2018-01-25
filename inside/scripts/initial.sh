@@ -85,3 +85,7 @@ while read i; do
 
 
 done < $domain_list
+
+maintained_domain_list=/configs/smartnginx/maintained_domain_list
+
+~/.acme.sh/acme.sh --list | tail -n +2 | cut -f 1 | sort -u > $maintained_domain_list
