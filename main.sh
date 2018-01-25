@@ -43,6 +43,7 @@ elif [[ $1 == test ]]; then
         ls $dir/scripts/
         ls $dir/logs/
         ls $dir/configs/verynginx/
+        exit
 
 elif [[ $1 == --help ]] || [[ $1 == -h ]] || [[ $1 == help ]]; then
         show_usage
