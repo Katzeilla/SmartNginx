@@ -43,11 +43,11 @@ gen_cert()
     
     
     echo $date [$1] Submit RAS certificate to Google icarus ct log server......
-    ct-submit ct.googleapis.com/icarus < /data/cert/$1/ras/cert.pem > /data/cert/$1/ras/sct/icarus.sct
+    ct-submit ct.googleapis.com/icarus < /data/cert/$1/ras/cert.pem > /data/cert/$1/ras/sct/google_icarus.sct
     echo $date [$1] Submit RAS certificate to Google pilot ct log server......
-    ct-submit ct.googleapis.com/pilot < /data/cert/$1/ras/cert.pem > /data/cert/$1/ras/sct/digicert.sct
+    ct-submit ct.googleapis.com/pilot < /data/cert/$1/ras/cert.pem > /data/cert/$1/ras/sct/google_pilot.sct
     echo $date [$1] Submit RAS certificate to COMODO sabre ct log server......
-    ct-submit sabre.ct.comodo.com < /data/cert/$1/ras/cert.pem > /data/cert/$1/ras/sct/sabre.sct
+    ct-submit sabre.ct.comodo.com < /data/cert/$1/ras/cert.pem > /data/cert/$1/ras/sct/comodo_sabre.sct
   
   /root/.acme.sh/acme.sh \
     --issue \
@@ -63,11 +63,11 @@ gen_cert()
     --fullchain-file /data/cert/$1/ecc/cert.pem
  
     echo $date [$1] Submit ECC certificate to Google icarus ct log server......
-    ct-submit ct.googleapis.com/icarus < /data/cert/$1/ecc/cert.pem > /data/cert/$1/ecc/sct/icarus.sct
+    ct-submit ct.googleapis.com/icarus < /data/cert/$1/ecc/cert.pem > /data/cert/$1/ecc/sct/google_icarus.sct
     echo $date [$1] Submit ECC certificate to Google pilot ct log server......
-    ct-submit ct.googleapis.com/pilot < /data/cert/$1/ecc/cert.pem > /data/cert/$1/ecc/sct/digicert.sct
+    ct-submit ct.googleapis.com/pilot < /data/cert/$1/ecc/cert.pem > /data/cert/$1/ecc/sct/google_pilot.sct
     echo $date [$1] Submit ECC certificate to COMODO sabre ct log server......
-    ct-submit sabre.ct.comodo.com < /data/cert/$1/ecc/cert.pem > /data/cert/$1/ecc/sct/sabre.sct
+    ct-submit sabre.ct.comodo.com < /data/cert/$1/ecc/cert.pem > /data/cert/$1/ecc/sct/comodo_sabre.sct
 
   rm /configs/web/$1/$1.conf
 }
