@@ -19,9 +19,7 @@ if [[ $? == 0 ]]; then
 fi
 }
 
-/scripts/preprocess.sh
-
-domain_list=/configs/smartnginx/new_domain_list
+domain_list=/configs/smartnginx/domain_list
   
 if [ -d /data/nginx ]; then
     echo $date "Found PID directory for Nginx, skip mkdir"
