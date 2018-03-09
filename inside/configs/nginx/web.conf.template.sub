@@ -73,6 +73,6 @@ server {
 
 
     location / {
-        rewrite       https://<domain_name>/$1 permanent;
+        return 301 https://<domain_name>$request_uri; 
     }
 }
