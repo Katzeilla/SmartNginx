@@ -22,6 +22,7 @@ show_usage()
         echo "test                    ls all mount dir of host"
         echo "stop                    Stop Nginx"
         echo "debug                   Start in to bash"
+        echo "shell                   Attach shell of the running container"
         echo "--help, -h ,help        Show this message"
         echo
         echo "If no [ACTION], start normally"
@@ -48,6 +49,11 @@ elif [[ $1 == test ]]; then
 elif [[ $1 == build ]]; then
         echo $date Start build smartnginx:v5
         docker build . --tag smartnginx:v5
+        exit
+
+elif [[ $1 == shell ]]; then
+        echo $date Attach bash in smartnginx
+        docker exec -it smartnginx bash
         exit
 
 elif [[ $1 == --help ]] || [[ $1 == -h ]] || [[ $1 == help ]]; then
