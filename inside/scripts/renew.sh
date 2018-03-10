@@ -12,3 +12,7 @@ while read i; do
     /scripts/gen_cert.sh $i renew
 
 done < $domain_list
+
+    echo $date Reloading Nginx to apply new cert......
+
+/usr/local/nginx/sbin/nginx -s reload
