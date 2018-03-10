@@ -33,7 +33,6 @@ gen_cert()
     /root/.acme.sh/acme.sh \
     --issue \
     --force \
-    --test \
     -d $1 \
     -w /data/acme.sh/$1/challenges/
 
@@ -55,7 +54,6 @@ gen_cert()
   /root/.acme.sh/acme.sh \
     --issue \
     --force \
-    --test \
     -d $1 \
     -w /data/acme.sh/$1/challenges/ \
     --keylength ec-384
