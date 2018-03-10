@@ -45,7 +45,7 @@ cron_restart_count=0
 
 # Main loop for every 1 min.
 
-auto_reload()
+reload_nginx()
 {
     while /bin/true; do
         /usr/local/nginx/sbin/nginx -s reload
@@ -97,7 +97,7 @@ while /bin/true; do
 
 
     if [[ $nginx_restart_count -gt 3 ]] || [[ $cron_restart_count -gt 3 ]]; then
-        echo $date "To many restart, exit now......"
+        echo $date "Too many restart, exit now......"
         exit 1;
     fi
 
