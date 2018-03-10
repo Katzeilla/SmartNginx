@@ -15,9 +15,9 @@ fi
 # Save new value of run_count to file
 echo $run_count > run_count
 
-stop_nginx()
+nginx_signal()
 {
-  /usr/local/nginx/sbin/nginx -s stop
+  /usr/local/nginx/sbin/nginx -s $1
 }
 
 gen_initial_conf()
@@ -94,8 +94,8 @@ if [[ $2 == gen_initial_conf ]]; then
   else
     gen_sub_conf $1
   fi
-  stop_nginx
-else
+  nginx_signal stop
+else	
   gen_cert $1
   stop_nginx
 fi
