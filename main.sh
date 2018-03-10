@@ -19,11 +19,11 @@ show_usage()
         echo "./main [ACTION]"
         echo
         echo "ACTION:"
-        echo "test                    ls all mount dir of host"
-        echo "stop                    Stop Nginx"
-        echo "debug                   Start in to bash"
-        echo "shell                   Attach shell of the running container"
-        echo "--help, -h ,help        Show this message"
+        echo "test                                ls all mount dir of host"
+        echo "nginx [stop|quit|reload|reopen]        Send signal to  Nginx"
+        echo "debug                                       Start in to bash"
+	echo "shell                  Attach shell of the running container"
+        echo "--help, -h ,help                           Show this message"
         echo
         echo "If no [ACTION], start normally"
 }
@@ -32,9 +32,8 @@ show_usage()
         flag='--entrypoint /bin/bash'
 		echo $date 'Debug Mode'
 
-elif [[ $1 == stop ]];then
-        echo $date 'Stoping SmartNginx......'
-        stop_nginx
+elif [[ $1 == nginx ]];then
+	docker exec -it smartnginx /usr/local/nginx/sbin/nginx -s $2	
         exit
 
 elif [[ $1 == test ]]; then
