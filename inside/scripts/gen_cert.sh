@@ -87,15 +87,23 @@ gen_sub_conf()
 }
 
 if [[ $2 == gen_initial_conf ]]; then
-  gen_initial_conf $1
-  gen_cert $1
-  if [[ $run_count == 1 ]]; then
-    gen_main_conf $1
-  else
-    gen_sub_conf $1
-  fi
-  nginx_signal stop
+
+    gen_initial_conf $1
+    gen_cert $1
+
+        if [[ $run_count == 1 ]]; then
+            gen_main_conf $1
+        else
+            gen_sub_conf $1
+        fi
+    
+    nginx_signal stop
+
+elif [[ $2 == renew ]]; then
+    gen_cert $1
+
 else	
-  gen_cert $1
-  stop_nginx
+    gen_cert $1
+    stop_nginx
+
 fi
