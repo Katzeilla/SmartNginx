@@ -19,8 +19,17 @@ if [[ $? == 0 ]]; then
 fi
 }
 
+
+
 domain_list=/configs/smartnginx/domain_list
-  
+
+
+echo $date Installing cron task......
+
+echo "00 00 01 */3 * /scripts/renew.sh" > cron
+crontab cron
+rm cron
+
 if [ -d /data/nginx ]; then
     echo $date "Found PID directory for Nginx, skip mkdir"
   else
