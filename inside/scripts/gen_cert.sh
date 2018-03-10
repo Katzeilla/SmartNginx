@@ -38,6 +38,7 @@ gen_cert()
 
     /root/.acme.sh/acme.sh \
     --install-cert \
+    --nocron \
     -d $1 \
     --key-file /data/cert/$1/ras/key.pem \
     --fullchain-file /data/cert/$1/ras/cert.pem 
@@ -60,6 +61,7 @@ gen_cert()
   /root/.acme.sh/acme.sh \
     --install-cert \
     -d $1 \
+    --nocron \
     --ecc \
     --key-file /data/cert/$1/ecc/key.pem \
     --fullchain-file /data/cert/$1/ecc/cert.pem
