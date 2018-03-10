@@ -1,5 +1,7 @@
 #! /bin/bash
 
+function renew() {
+
 date=[$(date)]
 
 domain_list=/configs/smartnginx/domain_list
@@ -16,3 +18,7 @@ done < $domain_list
     echo $date Reloading Nginx to apply new cert......
 
 /usr/local/nginx/sbin/nginx -s reload
+
+}
+
+renew > renew-$(date +%Y-%m-%d-%H%M).log 2>&1 
