@@ -75,7 +75,7 @@ RUN pkg_depend='uuid-dev procps cron golang autoconf libtool automake build-esse
     psol_url=https://dl.google.com/dl/page-speed/psol/${NPS_RELEASE_NUMBER}.tar.gz && \
     [ -e scripts/format_binary_url.sh ] && psol_url=$(scripts/format_binary_url.sh PSOL_BINARY_URL) && \
     wget ${psol_url} && \
-    tar -xzvf $(basename ${psol_url})  # extracts to psol/ && \
+    tar -xzvf $(basename ${psol_url}) && \
     cd .. && \
     \
     wget -c https://nginx.org/download/nginx-1.11.13.tar.gz && \
