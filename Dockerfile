@@ -8,7 +8,7 @@ VOLUME /data
 
 COPY /inside/configs/nginx/nginx.conf /usr/local/nginx/conf/
 
-RUN pkg_depend='procps cron golang autoconf libtool automake build-essential curl wget libpcre3 libpcre3-dev zlib1g-dev unzip git python ' && \
+RUN pkg_depend='uuid-dev procps cron golang autoconf libtool automake build-essential curl wget libpcre3 libpcre3-dev zlib1g-dev unzip git python ' && \
     apt-get update && \
     apt-get upgrade -y && \
     apt-get install -y $pkg_depend && \
