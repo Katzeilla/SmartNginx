@@ -67,6 +67,19 @@ RUN pkg_depend='uuid-dev procps cron golang autoconf libtool automake build-esse
     patch -p1 < patch-src-ngx_http_lua_headers.c.diff && \
     cd .. && \
     \
+    NPS_VERSION=1.13.35.2-stable && \
+    wget https://github.com/apache/incubator-pagespeed-ngx/archive/v${NPS_VERSION}.zip && \
+    unzip v${NPS_VERSION}.zip && \
+    nps_dir=$(find . -name "*pagespeed-ngx-${NPS_VERSION}" -type d) && \
+    cd "$nps_dir" && \
+    NPS_RELEASE_NUMBER=${NPS_VERSION/beta/} && \
+    NPS_RELEASE_NUMBER=${NPS_VERSION/stable/} && \
+    psol_url=https://dl.google.com/dl/page-speed/psol/${NPS_RELEASE_NUMBER}.tar.gz && \
+    [ -e scripts/format_binary_url.sh ] && psol_url=$(scripts/format_binary_url.sh PSOL_BINARY_URL) && \
+    wget ${psol_url} && \
+    tar -xzvf $(basename ${psol_url})  # extracts to psol/ && \
+    cd .. && \
+    \
     wget -c https://nginx.org/download/nginx-1.11.13.tar.gz && \
     tar zxf nginx-1.11.13.tar.gz && \
     cd nginx-1.11.13/ && \
@@ -76,9 +89,10 @@ RUN pkg_depend='uuid-dev procps cron golang autoconf libtool automake build-esse
 		--add-module=../lua-nginx-module-0.10.7 \
 		--add-module=../ngx_brotli \
 		--add-module=../nginx-ct-1.3.2 \
+		--add-module=$nps_dir \
 		--with-openssl=../openssl \
 		--with-http_v2_module \
-	  	--with-http_ssl_module \
+		--with-http_ssl_module \
 		--with-http_stub_status_module \
 		--with-http_gzip_static_module && \
     make && \
@@ -92,7 +106,7 @@ RUN pkg_depend='uuid-dev procps cron golang autoconf libtool automake build-esse
     \
     rm -rf ~/temp  && \
     mkdir /data/nginx/ && \
-    /usr/local/nginx/sbin/nginx -t
+    /usr/local/nginx/sbin/nginx -V
 
 ENTRYPOINT ["/scripts/entrypoint.sh"]
 
