@@ -33,8 +33,15 @@ rm cron
 if [ -d /data/nginx ]; then
     echo $date "Found PID directory for Nginx, skip mkdir"
   else
-    echo $date "Config PID directory for Nginx not found, create it......"
+    echo $date "PID directory for Nginx not found, create it......"
     mkdir -p /data/nginx
+fi
+
+if [ -d /data/pagespeed ]; then
+    echo $date "Found directory for PageSpeed, skip mkdir"
+  else
+    echo $date "Directory for Nginx not found, create it......"
+    mkdir -p /data/pagespeed
 fi
 
   echo $date "Reading from" $domain_list
