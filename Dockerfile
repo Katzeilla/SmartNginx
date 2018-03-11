@@ -111,3 +111,4 @@ RUN pkg_depend='uuid-dev procps cron golang autoconf libtool automake build-esse
 ENTRYPOINT ["/scripts/entrypoint.sh"]
 
 EXPOSE 80
+
