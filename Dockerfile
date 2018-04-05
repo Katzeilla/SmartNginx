@@ -8,14 +8,27 @@ VOLUME /data
 
 COPY /inside/configs/nginx/nginx.conf /usr/local/nginx/conf/
 
-RUN pkg_depend='uuid-dev procps cron golang autoconf libtool automake build-essential curl wget libpcre3 libpcre3-dev zlib1g-dev unzip git python ' && \
-    apt-get update && \
-    apt-get upgrade -y && \
-    apt-get install -y $pkg_depend && \
+RUN apt-get update && apt-get install -y \
+    uuid-dev \
+	procps \
+	cron \
+	golang \
+	autoconf \
+	libtool \
+	automake \
+	build-essential \
+	curl \
+	wget \
+	libpcre3 \
+	libpcre3-dev \
+	zlib1g-dev \
+	unzip \
+	git \
+	python && \
     curl https://get.acme.sh | sh && \
-    mkdir ~/temp && \
-    cd ~/temp && \
-    \    
+    mkdir ~/temp
+
+RUN cd ~/temp && \
     wget -O nginx-ct.zip -c https://github.com/grahamedgecombe/nginx-ct/archive/v1.3.2.zip && \
     unzip nginx-ct.zip && \
     \
@@ -81,7 +94,9 @@ RUN pkg_depend='uuid-dev procps cron golang autoconf libtool automake build-esse
     wget -c https://nginx.org/download/nginx-1.11.13.tar.gz && \
     tar zxf nginx-1.11.13.tar.gz && \
     cd nginx-1.11.13/ && \
-    patch -p1 < ../sslconfig/patches/nginx__1.11.5_dynamic_tls_records.patch && \
+    patch -p1 < ../sslconfig/patches/nginx__1.11.5_dynamic_tls_records.patch
+
+RUN cd ~/temp/nginx-1.11.13/ && \
     ./configure --with-ld-opt="-Wl,-rpath,/usr/local/lib/" \
 		--add-module=../ngx_devel_kit-0.3.0 \
 		--add-module=../lua-nginx-module-0.10.7 \
