@@ -99,3 +99,5 @@ while read i; do
 
 
 done < $domain_list
+
+initial_verynginx
