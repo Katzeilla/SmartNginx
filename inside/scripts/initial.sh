@@ -26,7 +26,9 @@ domain_list=/configs/smartnginx/domain_list
 
 echo $date Installing cron task......
 
-echo "00 00 01 */3 * /scripts/renew.sh" > cron
+echo "00 00 01 */2 * root /scripts/renew.sh" >> cron
+echo "00 01 * * * root /scripts/log_rotate.sh" >> cron
+
 crontab cron
 rm cron
 
