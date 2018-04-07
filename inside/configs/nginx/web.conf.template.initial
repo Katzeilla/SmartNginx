@@ -5,7 +5,7 @@
     	include /opt/verynginx/verynginx/nginx_conf/in_server_block.conf;
         #charset koi8-r;
 
-        access_log  /logs/web/<domain_name>/access_log ;
+        access_log  /logs/web/<domain_name>/initial.log;
 
         location / {
             root  /data/web/<domain_name> ;
