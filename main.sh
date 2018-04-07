@@ -46,8 +46,8 @@ elif [[ $1 == test ]]; then
         exit
 
 elif [[ $1 == build ]]; then
-        echo $date Start build smartnginx:v5
-        docker build . --tag smartnginx:v5
+        echo $date Start build smartnginx:testing
+        docker build . --tag smartnginx:testing
         exit
 
 elif [[ $1 == shell ]]; then
@@ -83,7 +83,7 @@ docker run -it \
   --mount type=bind,source=$dir/configs/nginx/nginx.conf,target=/usr/local/nginx/conf/nginx.conf \
   --name smartnginx \
   $flag \
-  smartnginx:v5
+  smartnginx:testing
 
 if [[ $? == 125 ]];
     then
