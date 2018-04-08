@@ -20,6 +20,7 @@ show_usage()
         echo
         echo "ACTION:"
         echo "test                                ls all mount dir of host"
+	echo "network <network_name>		      Connect to a network"
         echo "nginx [stop|quit|reload|reopen]        Send signal to  Nginx"
         echo "debug                                       Start in to bash"
 	echo "shell                  Attach shell of the running container"
@@ -31,6 +32,12 @@ show_usage()
   if [[ $1 == debug ]]; then
         flag='--entrypoint /bin/bash'
 		echo $date 'Debug Mode'
+
+elif [[ $1 == network ]]; then
+    if [[ $2 != "" ]]; then
+        flag="--network $2"
+        echo Connect to $2
+    fi
 
 elif [[ $1 == nginx ]];then
 	docker exec -it smartnginx /usr/local/nginx/sbin/nginx -s $2	
