@@ -74,11 +74,6 @@ RUN cd ~/temp && \
     \
     wget https://github.com/openresty/lua-nginx-module/archive/v0.10.7.zip && \
     unzip v0.10.7.zip && \
-    cd lua-nginx-module-0.10.7/ && \
-    \
-    curl 'https://raw.githubusercontent.com/macports/macports-ports/master/www/nginx/files/patch-src-ngx_http_lua_headers.c.diff' > patch-src-ngx_http_lua_headers.c.diff && \
-    patch -p1 < patch-src-ngx_http_lua_headers.c.diff && \
-    cd .. && \
     \
     NPS_VERSION=1.13.35.2-stable && \
     wget https://github.com/apache/incubator-pagespeed-ngx/archive/v${NPS_VERSION}.zip && \
