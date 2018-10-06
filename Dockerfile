@@ -72,8 +72,8 @@ RUN cd ~/temp && \
     wget 'https://github.com/simpl/ngx_devel_kit/archive/v0.3.0.zip' && \
     unzip v0.3.0.zip && \
     \
-    wget https://github.com/openresty/lua-nginx-module/archive/v0.10.7.zip && \
-    unzip v0.10.7.zip && \
+    wget https://github.com/openresty/lua-nginx-module/archive/v0.10.13.zip && \
+    unzip v0.10.13.zip && \
     \
     NPS_VERSION=1.13.35.2-stable && \
     wget https://github.com/apache/incubator-pagespeed-ngx/archive/v${NPS_VERSION}.zip && \
@@ -94,7 +94,7 @@ RUN cd ~/temp && \
 RUN cd ~/temp/nginx-1.12.2/ && \
     ./configure --with-ld-opt="-Wl,-rpath,/usr/local/lib/" \
 		--add-module=../ngx_devel_kit-0.3.0 \
-		--add-module=../lua-nginx-module-0.10.7 \
+		--add-module=../lua-nginx-module-0.10.13 \
 		--add-module=../ngx_brotli \
 		--add-module=../nginx-ct-1.3.2 \
 		--add-module=../*pagespeed* \
