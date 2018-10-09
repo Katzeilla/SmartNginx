@@ -52,7 +52,7 @@ RUN cd ~/temp && \
     git submodule update --init && \
     cd ../ && \
     \
-    git clone https://github.com/cloudflare/sslconfig.git &&  \
+    git clone https://github.com/katzeilla/sslconfig.git &&  \
     wget -O openssl.tar.gz -c https://github.com/openssl/openssl/archive/OpenSSL_1_0_2k.tar.gz && \
     tar zxf openssl.tar.gz && \
     mv openssl-OpenSSL_1_0_2k/ openssl && \
@@ -86,7 +86,9 @@ RUN cd ~/temp && \
     tar -xzvf $(basename ${psol_url}) && \
     cd .. && \
     \
-    wget -c https://nginx.org/download/nginx-1.15.5.tar.gz && \
+    wget -c https://nginx.org/download/nginx-1.15.5.tar.gz
+
+RUN cd ~/temp && \
     tar zxf nginx-1.15.5.tar.gz && \
     cd nginx-1.15.5/ && \
     patch -p1 < ../sslconfig/patches/nginx__1.11.5_dynamic_tls_records.patch
