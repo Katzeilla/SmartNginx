@@ -52,7 +52,7 @@ RUN cd ~/temp && \
     git submodule update --init && \
     cd ../ && \
     \
-    git clone https://github.com/katzeilla/sslconfig.git &&  \
+    git clone -b nginx-1.15.4-dynamic-tls-records  https://github.com/katzeilla/sslconfig.git &&  \
     wget -O openssl.tar.gz -c https://github.com/openssl/openssl/archive/OpenSSL_1_0_2k.tar.gz && \
     tar zxf openssl.tar.gz && \
     mv openssl-OpenSSL_1_0_2k/ openssl && \
