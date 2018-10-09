@@ -88,7 +88,7 @@ RUN cd ~/temp && \
     \
     wget -c https://nginx.org/download/nginx-1.15.5.tar.gz && \
     tar zxf nginx-1.15.5.tar.gz && \
-    cd nginx-1.15,5/ && \
+    cd nginx-1.15.5/ && \
     patch -p1 < ../sslconfig/patches/nginx__1.11.5_dynamic_tls_records.patch
 
 RUN cd ~/temp/nginx-1.15.5/ && \
