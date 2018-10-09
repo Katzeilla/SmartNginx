@@ -91,7 +91,7 @@ RUN cd ~/temp && \
 RUN cd ~/temp && \
     tar zxf nginx-1.15.5.tar.gz && \
     cd nginx-1.15.5/ && \
-    patch -p1 < ../sslconfig/patches/nginx__1.11.5_dynamic_tls_records.patch
+    patch -p1 < ../sslconfig/patches/nginx__1.15.5_dynamic_tls_records.patch
 
 RUN cd ~/temp/nginx-1.15.5/ && \
     ./configure --with-ld-opt="-Wl,-rpath,/usr/local/lib/" \
