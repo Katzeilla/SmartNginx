@@ -24,7 +24,8 @@ RUN apt-get update && apt-get install -y \
 	zlib1g-dev \
 	unzip \
 	git \
-	python && \
+	python \
+        libmaxminddb-dev && \
     curl https://get.acme.sh | sh && \
     mkdir ~/temp
 
