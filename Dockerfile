@@ -72,6 +72,8 @@ RUN cd ~/temp && \
     wget 'https://github.com/simpl/ngx_devel_kit/archive/v0.3.0.zip' && \
     unzip v0.3.0.zip && \
     \
+    git clone https://github.com/Katzeilla/ngx_http_geoip2_module && \
+    \
     wget https://github.com/openresty/lua-nginx-module/archive/v0.10.13.zip && \
     unzip v0.10.13.zip && \
     \
