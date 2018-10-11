@@ -122,7 +122,7 @@ RUN cd ~/temp/nginx-1.15.5/ && \
     mkdir /data/nginx/ && \
     /usr/local/nginx/sbin/nginx -V
 
-RUN wget http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country.mmdb.gz && \
+RUN wget https://geolite.maxmind.com/download/geoip/database/GeoLite2-Country.mmdb.gz && \
     gzip -d GeoLite2-Country.mmdb.gz && \
     mv ./GeoLite2-Country.mmdb /etc/GeoLite2-Country.mmdb && \
 
