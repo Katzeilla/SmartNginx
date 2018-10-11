@@ -122,10 +122,12 @@ RUN cd ~/temp/nginx-1.15.5/ && \
     mkdir /data/nginx/ && \
     /usr/local/nginx/sbin/nginx -V
 
-RUN wget http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country.mmdb.gz
+RUN wget http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country.mmdb.gz && \
+    gzip -d GeoLite2-Country.mmdb.gz && \
+    mv ./GeoLite2-Country.mmdb /etc/GeoLite2-Country.mmdb && \
+    rm GeoLite2-Country.mmdb.gz
 
 ENTRYPOINT ["/scripts/entrypoint.sh"]
 
 EXPOSE 80
 EXPOSE 443
-
