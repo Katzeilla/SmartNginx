@@ -101,6 +101,7 @@ RUN cd ~/temp/nginx-1.15.5/ && \
 		--add-module=../lua-nginx-module-0.10.13 \
 		--add-module=../ngx_brotli \
 		--add-module=../nginx-ct-1.3.2 \
+		--add-module=../ngx_http_geoip2_module \
 		--add-module=../*pagespeed* \
 		--with-openssl=../openssl \
 		--with-http_v2_module \
