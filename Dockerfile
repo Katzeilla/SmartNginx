@@ -124,7 +124,7 @@ RUN cd ~/temp/nginx-1.15.5/ && \
 
 RUN echo "Download Maxmind country database......" && \
     wget https://geolite.maxmind.com/download/geoip/database/GeoLite2-Country.mmdb.gz && \
-    echo "Extract to /etc/GeoLite2-Country.mmdb......"  
+    echo "Extract to /etc/GeoLite2-Country.mmdb......" && \ 
     gzip -d GeoLite2-Country.mmdb.gz && \
     mv ./GeoLite2-Country.mmdb /etc/GeoLite2-Country.mmdb
 
