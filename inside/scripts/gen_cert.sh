@@ -32,7 +32,6 @@ gen_cert()
 
     /root/.acme.sh/acme.sh \
     --issue \
-    --test \
     --force \
     -d $1 \
     -w /data/acme.sh/$1/challenges/
@@ -55,7 +54,6 @@ gen_cert()
   
   /root/.acme.sh/acme.sh \
     --issue \
-    --test \
     --force \
     -d $1 \
     -w /data/acme.sh/$1/challenges/ \
