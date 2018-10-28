@@ -45,5 +45,20 @@ echo blog.example.org >> ./inside/configs/smartnginx/domain_list
 ```bash
 
 ./main.sh
+```
+
+3. 构建镜像
+
+```bash
+
+./main.sh build
 
 ```
+4. 启动
+
+```bash
+
+./main.sh
+
+```
+
