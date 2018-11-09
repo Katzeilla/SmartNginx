@@ -89,14 +89,14 @@ RUN cd ~/temp && \
     tar -xzvf $(basename ${psol_url}) && \
     cd .. && \
     \
-    wget -c https://nginx.org/download/nginx-1.15.5.tar.gz
+    wget -c https://nginx.org/download/nginx-1.15.6.tar.gz
 
 RUN cd ~/temp && \
-    tar zxf nginx-1.15.5.tar.gz && \
-    cd nginx-1.15.5/ && \
+    tar zxf nginx-1.15.6.tar.gz && \
+    cd nginx-1.15.6/ && \
     patch -p1 < ../sslconfig/patches/nginx__1.15.4_dynamic_tls_records.patch
 
-RUN cd ~/temp/nginx-1.15.5/ && \
+RUN cd ~/temp/nginx-1.15.6/ && \
     ./configure --with-ld-opt="-Wl,-rpath,/usr/local/lib/" \
 		--add-module=../ngx_devel_kit-0.3.0 \
 		--add-module=../lua-nginx-module-0.10.13 \
