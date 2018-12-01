@@ -1,5 +1,7 @@
 #! /bin/bash
 
+DOMAIN_LIST=/configs/smartnginx/domain_list
+
 date=[$(date)]
 
 initial_verynginx()
@@ -18,10 +20,6 @@ if [[ $? == 0 ]]; then
   echo "####################################################################################"
 fi
 }
-
-
-
-domain_list=/configs/smartnginx/domain_list
 
 
 echo $date Installing cron task......
@@ -46,7 +44,7 @@ if [ -d /data/pagespeed ]; then
     mkdir -p /data/pagespeed
 fi
 
-  echo $date "Reading from" $domain_list
+  echo $date "Reading from" $DOMAIN_LIST
 
 while read i; do
     echo $date "Found domain name" $i
@@ -100,6 +98,6 @@ while read i; do
 
 
 
-done < $domain_list
+done < $DOMAIN_LIST
 
 initial_verynginx
