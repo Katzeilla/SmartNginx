@@ -41,12 +41,6 @@ echo www.example.org > ./inside/configs/smartnginx/domain_list
 echo blog.example.org >> ./inside/configs/smartnginx/domain_list
 
 ```
-3. 启动
-
-```bash
-
-./main.sh
-```
 
 3. 构建镜像
 
