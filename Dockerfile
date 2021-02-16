@@ -9,7 +9,7 @@ VOLUME /data
 COPY /inside/configs/nginx/nginx.conf /usr/local/nginx/conf/
 
 RUN apt-get update && apt-get install -y \
-    uuid-dev \
+        uuid-dev \
 	procps \
 	cron \
 	golang \
@@ -24,8 +24,7 @@ RUN apt-get update && apt-get install -y \
 	zlib1g-dev \
 	unzip \
 	git \
-	python \
-        libmaxminddb-dev && \
+	python && \
     curl https://get.acme.sh | sh && \
     mkdir ~/temp
 
@@ -73,8 +72,6 @@ RUN cd ~/temp && \
     wget 'https://github.com/simpl/ngx_devel_kit/archive/v0.3.0.zip' && \
     unzip v0.3.0.zip && \
     \
-    git clone https://github.com/Katzeilla/ngx_http_geoip2_module && \
-    \
     wget https://github.com/openresty/lua-nginx-module/archive/v0.10.13.zip && \
     unzip v0.10.13.zip && \
     \
@@ -102,7 +99,6 @@ RUN cd ~/temp/nginx-1.15.6/ && \
 		--add-module=../lua-nginx-module-0.10.13 \
 		--add-module=../ngx_brotli \
 		--add-module=../nginx-ct-1.3.2 \
-		--add-module=../ngx_http_geoip2_module \
 		--add-module=../*pagespeed* \
 		--with-openssl=../openssl \
 		--with-http_v2_module \
@@ -121,12 +117,6 @@ RUN cd ~/temp/nginx-1.15.6/ && \
     rm -rf ~/temp  && \
     mkdir /data/nginx/ && \
     /usr/local/nginx/sbin/nginx -V
-
-RUN echo "Download Maxmind country database......" && \
-    wget https://geolite.maxmind.com/download/geoip/database/GeoLite2-Country.mmdb.gz && \
-    echo "Extract to /etc/GeoLite2-Country.mmdb......" && \ 
-    gzip -d GeoLite2-Country.mmdb.gz && \
-    mv ./GeoLite2-Country.mmdb /etc/GeoLite2-Country.mmdb
 
 ENTRYPOINT ["/scripts/entrypoint.sh"]
 
