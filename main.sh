@@ -48,7 +48,6 @@ elif [[ $1 == test ]]; then
         ls $dir/data/
         ls $dir/scripts/
         ls $dir/logs/
-        ls $dir/configs/verynginx/
         exit
 
 elif [[ $1 == build ]]; then
@@ -85,7 +84,6 @@ docker run -it \
   --mount type=bind,source=$dir/data/,target=/data/ \
   --mount type=bind,source=$dir/scripts/,target=/scripts/ \
   --mount type=bind,source=$dir/logs/,target=/logs/ \
-  --mount type=bind,source=$dir/configs/verynginx/,target=/opt/verynginx/verynginx/configs/ \
   --mount type=bind,source=$dir/configs/nginx/nginx.conf,target=/usr/local/nginx/conf/nginx.conf \
   --name smartnginx \
   $flag \
