@@ -65,8 +65,8 @@ RUN cd ~/temp && \
     export LUAJIT_INC=/usr/local/include/luajit-2.0/ && \
     cd ../ && \
     \
-    wget 'https://github.com/simpl/ngx_devel_kit/archive/v0.3.0.zip' && \
-    unzip v0.3.0.zip && \
+    wget 'https://github.com/simpl/ngx_devel_kit/archive/v0.3.1.zip' && \
+    unzip v0.3.1.zip && \
     \
     wget https://github.com/openresty/lua-nginx-module/archive/v0.10.19.zip && \
     unzip v0.10.19.zip && \
@@ -88,7 +88,7 @@ RUN cd ~/temp && \
 RUN cd ~/temp/nginx-1.18.0/ && \
     ./configure --with-ld-opt="-Wl,-rpath,/usr/local/lib/" \
 		# required by OpenResty / VeryNginx
-		--add-module=../ngx_devel_kit-0.3.0 \
+		--add-module=../ngx_devel_kit-0.3.1 \
 		--add-module=../lua-nginx-module-0.10.19 \
 		# compression
 		--add-module=../ngx_brotli \
