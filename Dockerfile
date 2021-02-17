@@ -33,7 +33,7 @@ RUN apt-get update && \
     curl https://get.acme.sh | sh && \
     mkdir ~/temp
 
-RUN cd ~/temp && \
+RUN cd /root/temp && \
     wget -O nginx-ct.zip -c https://github.com/grahamedgecombe/nginx-ct/archive/v1.3.2.zip && \
     unzip nginx-ct.zip && \
     \
@@ -59,21 +59,24 @@ RUN cd ~/temp && \
     \
     wget -O openssl.tar.gz -c https://github.com/openssl/openssl/archive/OpenSSL_1_1_1j.tar.gz && \
     tar zxf openssl.tar.gz && \
-    mv openssl-OpenSSL_1_1_1j/ openssl && \
-    \
-    wget https://luajit.org/download/LuaJIT-2.0.5.zip && \
-    unzip LuaJIT-2.0.5.zip  && \
-    cd LuaJIT-2.0.5 && \
+    mv openssl-OpenSSL_1_1_1j/ openssl
+
+RUN cd /root/temp/ && \
+    LUAJIT2_VERSION=2.1-20201229 && \
+    wget https://github.com/openresty/luajit2/archive/v${LUAJIT2_VERSION}.zip && \
+    unzip v${LUAJIT2_VERSION}.zip  && \
+    cd luajit2-${LUAJIT2_VERSION} && \
     make && \
     make install && \
-    cd ../ && \
+    cd .. && \
     \
     wget 'https://github.com/simpl/ngx_devel_kit/archive/v0.3.1.zip' && \
     unzip v0.3.1.zip && \
     \
     wget https://github.com/openresty/lua-nginx-module/archive/v0.10.19.zip && \
-    unzip v0.10.19.zip && \
-    \
+    unzip v0.10.19.zip
+
+RUN cd /root/temp/ && \
     NPS_VERSION=1.13.35.2-stable && \
     wget https://github.com/apache/incubator-pagespeed-ngx/archive/v${NPS_VERSION}.zip && \
     unzip v${NPS_VERSION}.zip && \
@@ -88,9 +91,9 @@ RUN cd ~/temp && \
     wget -c https://nginx.org/download/nginx-1.18.0.tar.gz && \
     tar zxf nginx-1.18.0.tar.gz
 
-RUN cd ~/temp/nginx-1.18.0/ && \
+RUN cd /root/temp/nginx-1.18.0/ && \
     export LUAJIT_LIB=/usr/local/lib && \
-    export LUAJIT_INC=/usr/local/include/luajit-2.0 && \
+    export LUAJIT_INC=/usr/local/include/luajit-2.1 && \
     ./configure --with-ld-opt="-Wl,-rpath,/usr/local/lib/" \
 		# required by OpenResty / VeryNginx
 		--add-module=../ngx_devel_kit-0.3.1 \
