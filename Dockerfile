@@ -52,13 +52,9 @@ RUN cd ~/temp && \
     git submodule update --init && \
     cd ../ && \
     \
-    git clone -b nginx-1.15.4-dynamic-tls-records  https://github.com/katzeilla/sslconfig.git &&  \
-    wget -O openssl.tar.gz -c https://github.com/openssl/openssl/archive/OpenSSL_1_0_2k.tar.gz && \
+    wget -O openssl.tar.gz -c https://github.com/openssl/openssl/archive/OpenSSL_1_1_1j.tar.gz && \
     tar zxf openssl.tar.gz && \
-    mv openssl-OpenSSL_1_0_2k/ openssl && \
-    cd openssl && \
-    patch -p1 < ../sslconfig/patches/openssl__chacha20_poly1305_draft_and_rfc_ossl102j.patch && \ 
-    cd ../ && \
+    mv openssl-OpenSSL_1_1_1j/ openssl && \
     \
     wget https://luajit.org/download/LuaJIT-2.0.5.zip && \
     unzip LuaJIT-2.0.5.zip  && \
@@ -86,12 +82,8 @@ RUN cd ~/temp && \
     tar -xzvf $(basename ${psol_url}) && \
     cd .. && \
     \
-    wget -c https://nginx.org/download/nginx-1.15.6.tar.gz
-
-RUN cd ~/temp && \
-    tar zxf nginx-1.15.6.tar.gz && \
-    cd nginx-1.15.6/ && \
-    patch -p1 < ../sslconfig/patches/nginx__1.15.4_dynamic_tls_records.patch
+    wget -c https://nginx.org/download/nginx-1.15.6.tar.gz && \
+    tar zxf nginx-1.15.6.tar.gz
 
 RUN cd ~/temp/nginx-1.15.6/ && \
     ./configure --with-ld-opt="-Wl,-rpath,/usr/local/lib/" \
