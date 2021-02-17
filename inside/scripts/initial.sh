@@ -6,11 +6,11 @@ date=[$(date)]
 
 echo $date Installing cron task......
 
-echo "00 01 01 */2 * root /scripts/renew.sh" >> cron
-echo "00 01 * * * root /scripts/log_rotate.sh" >> cron
+echo "00 01 01 */2 * /scripts/renew.sh" >> task
+echo "00 01 *  *   * /scripts/log_rotate.sh" >> task
 
-crontab cron
-rm cron
+crontab task
+rm task
 
 if [ -d /data/nginx ]; then
     echo $date "Found PID directory for Nginx, skip mkdir"
