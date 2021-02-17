@@ -13,9 +13,9 @@
 <body>
 <h1>Welcome to SmartNginx!</h1>
 
-<p>If you see this page, this web server is working.</p>
-<p>You have to edit /configs/* to add your own config.</p>
+<p>If you can see this page, then this web server is working properly.</p>
+<p>Now it's a good time to edit /configs/* inside this container and add your own site-specific configuration.</p>
 
-<p>For more info please refer to <a href="https://github.com/Katzeilla/SmartNginx">GitHub repo</a>.<br/>
+<p>For more information please refer to <a href="https://github.com/Katzeilla/SmartNginx">Katzeilla/SmartNginx @ GitHub</a>.<br/>
 </body>
 </html>
