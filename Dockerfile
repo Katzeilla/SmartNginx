@@ -95,5 +95,4 @@ RUN cd /root/temp && \
 
 ENTRYPOINT ["/scripts/entrypoint.sh"]
 
-EXPOSE 80
-EXPOSE 443
+EXPOSE 80 443
