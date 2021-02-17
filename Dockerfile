@@ -82,10 +82,10 @@ RUN cd ~/temp && \
     tar -xzvf $(basename ${psol_url}) && \
     cd .. && \
     \
-    wget -c https://nginx.org/download/nginx-1.15.6.tar.gz && \
-    tar zxf nginx-1.15.6.tar.gz
+    wget -c https://nginx.org/download/nginx-1.18.0.tar.gz && \
+    tar zxf nginx-1.18.0.tar.gz
 
-RUN cd ~/temp/nginx-1.15.6/ && \
+RUN cd ~/temp/nginx-1.18.0/ && \
     ./configure --with-ld-opt="-Wl,-rpath,/usr/local/lib/" \
 		--add-module=../ngx_devel_kit-0.3.0 \
 		--add-module=../lua-nginx-module-0.10.13 \
