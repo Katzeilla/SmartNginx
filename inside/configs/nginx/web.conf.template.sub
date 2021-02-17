@@ -43,10 +43,6 @@ server {
     add_header               X-Frame-Options DENY;
 
     add_header               X-Content-Type-Options nosniff;
-    
-    # Pin Let`s encrypt + AddTrust External CA Root
-
-    add_header               Public-Key-Pins 'pin-sha256="YLh1dUR9y6Kja30RrAn7JKnbQG/uEtLMkBgFF2Fuihg="; pin-sha256="lCppFqbkrlJ3EcVFAkeip0+44VaoJUymbnOaEUk7tEU="; max-age=2592000; includeSubDomains';
 
     location ~ "\.pagespeed\.([a-z]\.)?[a-z]{2}\.[^.]{10}\.[^.]+" { add_header "" ""; }
     location ~ "^/ngx_pagespeed_static/" { }
