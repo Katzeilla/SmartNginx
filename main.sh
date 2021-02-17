@@ -4,9 +4,6 @@ cd ./inside
 dir=$(pwd)
 cd ..
 
-date="[$(date)]"
-
-
 stop_nginx()
 {
     docker stop smartnginx
@@ -31,7 +28,7 @@ show_usage()
 
   if [[ $1 == debug ]]; then
         flag='--entrypoint /bin/bash'
-		echo $date 'Debug Mode'
+		echo "[$(date)]" 'Debug Mode'
 
 elif [[ $1 == network ]]; then
     if [[ $2 != "" ]]; then
@@ -44,7 +41,7 @@ elif [[ $1 == nginx ]];then
         exit
 
 elif [[ $1 == test ]]; then
-        echo $date Test Mode
+        echo "[$(date)]" Test Mode
         ls $dir/configs/
         ls $dir/data/
         ls $dir/scripts/
@@ -53,12 +50,12 @@ elif [[ $1 == test ]]; then
         exit
 
 elif [[ $1 == build ]]; then
-        echo $date Start build smartnginx:testing
+        echo "[$(date)]" Start build smartnginx:testing
         docker build . --tag smartnginx:testing
         exit
 
 elif [[ $1 == shell ]]; then
-        echo $date Attach bash in smartnginx
+        echo "[$(date)]" Attach bash in smartnginx
         docker exec -it smartnginx bash
         exit
 
@@ -67,12 +64,12 @@ elif [[ $1 == --help ]] || [[ $1 == -h ]] || [[ $1 == help ]]; then
         exit
 
 else
-	    echo $date 'Normal Mode'
+	    echo "[$(date)]" 'Normal Mode'
 fi
 
 if [ ! -f $dir/logs ]; then
 
-  echo $date mkdir for logs......
+  echo "[$(date)]" mkdir for logs......
   mkdir -p $dir/logs
 
 fi
@@ -94,7 +91,7 @@ docker run -it \
 
 if [[ $? == 125 ]];
     then
-    echo $date "Another Nginx already start, stop it......"
+    echo "[$(date)]" "Another Nginx already start, stop it......"
     stop_nginx
     ./main.sh $1
   fi
