@@ -2,15 +2,13 @@
 
 > 基础功能已经可用，但没有任何错误处理机制，不建议使用, 除非你真的知道自己在做什么。
 
-SmartNginx 基于 Nginx 最新主线版本 1.15.6 构建，集成了多种工具和优化方案，可以作为 Docker 容器使用。
+SmartNginx 基于 Nginx 最新稳定版本 1.18.0 构建，集成了多种工具和优化方案，可以作为 Docker 容器使用。
 
 ### 功能：
 
 * 自动通过 [acme.sh](https://github.com/Neilpang/acme.sh) 获取/安装/续期 Let\`s Encrypt 的证书 
 * 自动通过 [nginx-ct](https://github.com/grahamedgecombe/nginx-ct) 获取/安装/续期证书透明度文件
-* 整合 [VeryNginx](https://github.com/alexazhou/VeryNginx) (一个基于 OpenResty 的强大应用程序防火墙（WAF）)
 * 整合 [Google PageSpeed](https://developers.google.com/speed/) （来自 Google 的 Web 性能优化工具）
-* 自动配置 [HSTS](https://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security)/[HPKP](https://en.wikipedia.org/wiki/HTTP_Public_Key_Pinning) 以加强安全性
 
 * 持续开发中，TO DO 请参阅 [Project 页面](https://github.com/Katzeilla/SmartNginx/projects/1)
 
