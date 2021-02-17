@@ -8,7 +8,12 @@ VOLUME /data
 
 COPY /inside/configs/nginx/nginx.conf /usr/local/nginx/conf/
 
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && \
+    apt-get install -y \
+        --no-install-recommends \
+        --no-install-suggests \
+	\
+        ca-certificates \
         uuid-dev \
 	procps \
 	cron \
