@@ -1,5 +1,7 @@
 #! /bin/bash
 
+VERSION='v1.0.0'
+
 cd ./inside
 dir=$(pwd)
 cd ..
@@ -50,8 +52,8 @@ elif [[ $1 == test ]]; then
         exit
 
 elif [[ $1 == build ]]; then
-        echo "[$(date)]" Start build smartnginx:testing
-        docker build . --tag smartnginx:testing
+        echo "[$(date)]" Start build smartnginx:$VERSION
+        docker build . --tag smartnginx:$VERSION
         exit
 
 elif [[ $1 == shell ]]; then
@@ -87,7 +89,7 @@ docker run -it \
   --mount type=bind,source=$dir/configs/nginx/nginx.conf,target=/usr/local/nginx/conf/nginx.conf \
   --name smartnginx \
   $flag \
-  smartnginx:testing
+  smartnginx:$VERSION
 
 if [[ $? == 125 ]];
     then
