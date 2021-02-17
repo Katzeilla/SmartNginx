@@ -50,8 +50,8 @@ elif [[ $1 == test ]]; then
         ls $dir/logs/
         exit
 
-elif [[ $1 == build ]]; then
-        echo "[$(date)]" Start build smartnginx:$VERSION
+elif [[ $1 == build || $1 == make ]]; then
+        echo "[$(date)]" "Building smartnginx:$VERSION..."
         docker build . --tag smartnginx:$VERSION
         exit
 
