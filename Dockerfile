@@ -61,8 +61,6 @@ RUN cd ~/temp && \
     cd LuaJIT-2.0.5 && \
     make && \
     make install && \
-    export LUAJIT_LIB=/usr/local/lib && \
-    export LUAJIT_INC=/usr/local/include/luajit-2.0/ && \
     cd ../ && \
     \
     wget 'https://github.com/simpl/ngx_devel_kit/archive/v0.3.1.zip' && \
@@ -86,6 +84,8 @@ RUN cd ~/temp && \
     tar zxf nginx-1.18.0.tar.gz
 
 RUN cd ~/temp/nginx-1.18.0/ && \
+    export LUAJIT_LIB=/usr/local/lib && \
+    export LUAJIT_INC=/usr/local/include/luajit-2.0 && \
     ./configure --with-ld-opt="-Wl,-rpath,/usr/local/lib/" \
 		# required by OpenResty / VeryNginx
 		--add-module=../ngx_devel_kit-0.3.1 \
