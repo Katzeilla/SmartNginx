@@ -22,7 +22,6 @@ RUN apt-get update && \
 	libtool \
 	automake \
 	build-essential \
-	curl \
 	wget \
 	libpcre3 \
 	libpcre3-dev \
@@ -30,9 +29,8 @@ RUN apt-get update && \
 	unzip \
 	git \
 	python && \
-    curl https://get.acme.sh | sh && \
-    \
-    mkdir /root/temp \
+    wget -O -  https://get.acme.sh | sh && \
+    mkdir /root/temp && \
     cd /root/temp && \
     wget -O nginx-ct.zip -c https://github.com/grahamedgecombe/nginx-ct/archive/v1.3.2.zip && \
     unzip nginx-ct.zip && \
