@@ -31,9 +31,9 @@ RUN apt-get update && \
 	git \
 	python && \
     curl https://get.acme.sh | sh && \
-    mkdir ~/temp
-
-RUN cd /root/temp && \
+    \
+    mkdir /root/temp \
+    cd /root/temp && \
     wget -O nginx-ct.zip -c https://github.com/grahamedgecombe/nginx-ct/archive/v1.3.2.zip && \
     unzip nginx-ct.zip && \
     \
@@ -59,9 +59,9 @@ RUN cd /root/temp && \
     \
     wget -O openssl.tar.gz -c https://github.com/openssl/openssl/archive/OpenSSL_1_1_1j.tar.gz && \
     tar zxf openssl.tar.gz && \
-    mv openssl-OpenSSL_1_1_1j/ openssl
-
-RUN cd /root/temp/ && \
+    mv openssl-OpenSSL_1_1_1j/ openssl && \
+    \
+    cd /root/temp/ && \
     NPS_VERSION=1.13.35.2-stable && \
     wget https://github.com/apache/incubator-pagespeed-ngx/archive/v${NPS_VERSION}.zip && \
     unzip v${NPS_VERSION}.zip && \
@@ -70,9 +70,9 @@ RUN cd /root/temp/ && \
     psol_url=https://dl.google.com/dl/page-speed/psol/${NPS_RELEASE_NUMBER}.tar.gz && \
     [ -e scripts/format_binary_url.sh ] && psol_url=$(scripts/format_binary_url.sh PSOL_BINARY_URL) && \
     wget ${psol_url} && \
-    tar -xzvf $(basename ${psol_url})
-
-RUN cd /root/temp && \
+    tar -xzvf $(basename ${psol_url}) && \
+    \
+    cd /root/temp && \
     NGINX_VERSION=1.18.0 && \
     wget -c https://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz && \
     tar zxf nginx-${NGINX_VERSION}.tar.gz && \
@@ -89,10 +89,18 @@ RUN cd /root/temp && \
 		--with-http_stub_status_module \
 		--with-http_gzip_static_module && \
     make -j4 && \
-    make install &&\
+    make install && \
+    rm -r /root/temp && \
+    apt purge \
+        unzip \
+        git \
+        build-essential \
+        wget \
+        automake \
+        autoconf -y && \
+    apt autoremove -y && \
     mkdir /data/nginx/ && \
     /usr/local/nginx/sbin/nginx -V
-
 ENTRYPOINT ["/scripts/entrypoint.sh"]
 
 EXPOSE 80 443
