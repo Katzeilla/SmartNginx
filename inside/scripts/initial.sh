@@ -28,6 +28,6 @@ fi
 
 while read i; do
 
-./init_site.sh $i
+/scripts/init_site.sh $i
 
 done < $DOMAIN_LIST
