@@ -2,8 +2,6 @@
    server {
         listen       80;
         server_name  <domain_name>;
-    	include /opt/verynginx/verynginx/nginx_conf/in_server_block.conf;
-        #charset koi8-r;
 
         access_log  /logs/web/<domain_name>/initial.log;
 
