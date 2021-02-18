@@ -1,7 +1,5 @@
 server {
     
-    include /opt/verynginx/verynginx/nginx_conf/in_server_block.conf;
-
     listen               443 ssl http2 fastopen=3 reuseport;
 
     server_name          <domain_name>;
