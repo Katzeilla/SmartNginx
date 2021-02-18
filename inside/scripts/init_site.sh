@@ -1,5 +1,7 @@
 #! /bin/bash
 
+i="$1"
+
 echo "[$(date)]" "Found domain name" $i
     
   if [ -d /configs/web/$i ]; then
