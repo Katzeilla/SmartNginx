@@ -93,10 +93,10 @@ RUN apt-get update && \
         unzip \
         git \
         build-essential \
-        wget \
         automake \
         autoconf -y && \
     apt autoremove -y && \
+    apt clean && \
     mkdir /data/nginx/ && \
     /usr/local/nginx/sbin/nginx -V
 ENTRYPOINT ["/scripts/entrypoint.sh"]
