@@ -12,12 +12,17 @@ stop_nginx()
     docker rm smartnginx
 }
 
+_pull() {
+    docker pull miaowo/smartnginx:$VERSION
+}
+
 show_usage()
 {
         echo "This is a bash script for manage SmartNginx"
         echo "./main [ACTION]"
         echo
         echo "ACTION:"
+        echo "pull                   pull the latest image from Docker Hub"
         echo "test                                ls all mount dir of host"
 	echo "network <network_name>		      Connect to a network"
         echo "nginx [stop|quit|reload|reopen]        Send signal to  Nginx"
@@ -37,6 +42,10 @@ elif [[ $1 == network ]]; then
         flag="--network $2"
         echo Connect to $2
     fi
+
+elif [[ $1 == pull ]];then
+	_pull
+        exit
 
 elif [[ $1 == nginx ]];then
 	docker exec -it smartnginx /usr/local/nginx/sbin/nginx -s $2	
