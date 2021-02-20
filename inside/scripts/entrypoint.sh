@@ -77,7 +77,7 @@ while /bin/true; do
 
     if [[ $nginx_status -ne 0 ]]; then
         let nginx_restart_count++ 
-        echo $date "Nginx exited with code $nginx_status"
+        echo "[$date]" "Nginx exited with code $nginx_status"
         
         # Avoid "4/3 attempt"
         if [[ $nginx_restart_count < "4" ]]; then
