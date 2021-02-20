@@ -27,8 +27,21 @@ gen_initial_conf()
 
 gen_cert()
 {
+  is_staging()
+  {
+    if [ -a /config/smartnginx/staging.flag ]; then
+      true;
+    else
+      false;
+    fi
+  }
+  
+  if is_staging; then
+    _arg="$_arg --staging"
+  fi
 
     /root/.acme.sh/acme.sh \
+    "$_arg" \
     --issue \
     --force \
     -d $1 \
@@ -41,13 +54,16 @@ gen_cert()
     --key-file /data/cert/$1/ras/key.pem \
     --fullchain-file /data/cert/$1/ras/cert.pem 
     
-    echo "[$(date)]" [$1] Submit RAS certificate to COMODO sabre ct log server......
-    ct-submit sabre.ct.comodo.com < /data/cert/$1/ras/cert.pem > /data/cert/$1/ras/sct/comodo_sabre.sct
-    echo "[$(date)]" [$1] Submit RAS certificate to COMODO mammoth ct log server......
-    ct-submit mammoth.ct.comodo.com < /data/cert/$1/ras/cert.pem > /data/cert/$1/ras/sct/comodo_mammoth.sct
-  
+    if !(is_staging); then
+      echo "[$(date)]" [$1] Submit RAS certificate to COMODO sabre ct log server......
+      ct-submit sabre.ct.comodo.com < /data/cert/$1/ras/cert.pem > /data/cert/$1/ras/sct/comodo_sabre.sct
+      echo "[$(date)]" [$1] Submit RAS certificate to COMODO mammoth ct log server......
+      ct-submit mammoth.ct.comodo.com < /data/cert/$1/ras/cert.pem > /data/cert/$1/ras/sct/comodo_mammoth.sct
+    fi
+
   /root/.acme.sh/acme.sh \
     --issue \
+    "$_arg" \
     --force \
     -d $1 \
     -w /data/acme.sh/$1/challenges/ \
@@ -61,10 +77,12 @@ gen_cert()
     --key-file /data/cert/$1/ecc/key.pem \
     --fullchain-file /data/cert/$1/ecc/cert.pem
  
+  if !(is_staging); then
     echo "[$(date)]" [$1] Submit ECC certificate to COMODO sabre ct log server......
     ct-submit sabre.ct.comodo.com < /data/cert/$1/ecc/cert.pem > /data/cert/$1/ecc/sct/comodo_sabre.sct
     echo "[$(date)]" [$1] Submit ECC certificate to COMODO mammoth ct log server......
     ct-submit mammoth.ct.comodo.com < /data/cert/$1/ecc/cert.pem > /data/cert/$1/ecc/sct/comodo_sabre.sct
+  fi
 
   rm /configs/web/$1/$1.conf
 }
