@@ -58,9 +58,9 @@ health_check ()
 
 while /bin/true; do
 
-    pgrep nginx
+    pgrep nginx > /dev/null
     nginx_status=$?
-    pgrep cron
+    pgrep cron > /dev/null
     cron_status=$?
 
     if [[ $cron_status -ne 0 ]]; then
