@@ -46,10 +46,10 @@ elif [[ $1 == network ]]; then
 
 elif [[ $1 == staging ]];then
 	if [ -a "$dir/inside/configs/smartnginx/staging.flag" ]; then
-		touch "$dir/configs/smartnginx/staging.flag"
+		rm "$dir/configs/smartnginx/staging.flag"
         	exit
 	else
-		rm "$dir/configs/smartnginx/staging.flag"
+		touch "$dir/configs/smartnginx/staging.flag"
 		exit
 	fi
 elif [[ $1 == pull ]];then
