@@ -19,4 +19,4 @@ done < $DOMAIN_LIST
 
 }
 
-renew > /logs/renew/renew-$(date +%Y-%m-%d-%H%M).log 2>&1 
+renew > /logs/renew/renew-"$(date +%Y-%m-%d-%H%M)".log 2>&1 
