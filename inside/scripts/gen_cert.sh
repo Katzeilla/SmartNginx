@@ -29,6 +29,7 @@ gen_cert()
 {
 
     /root/.acme.sh/acme.sh \
+    --staging \
     --issue \
     --force \
     -d $1 \
@@ -41,12 +42,13 @@ gen_cert()
     --key-file /data/cert/$1/ras/key.pem \
     --fullchain-file /data/cert/$1/ras/cert.pem 
     
-    echo "[$(date)]" [$1] Submit RAS certificate to COMODO sabre ct log server......
-    ct-submit sabre.ct.comodo.com < /data/cert/$1/ras/cert.pem > /data/cert/$1/ras/sct/comodo_sabre.sct
-    echo "[$(date)]" [$1] Submit RAS certificate to COMODO mammoth ct log server......
-    ct-submit mammoth.ct.comodo.com < /data/cert/$1/ras/cert.pem > /data/cert/$1/ras/sct/comodo_mammoth.sct
+    #echo "[$(date)]" [$1] Submit RAS certificate to COMODO sabre ct log server......
+    #ct-submit sabre.ct.comodo.com < /data/cert/$1/ras/cert.pem > /data/cert/$1/ras/sct/comodo_sabre.sct
+    #echo "[$(date)]" [$1] Submit RAS certificate to COMODO mammoth ct log server......
+    #ct-submit mammoth.ct.comodo.com < /data/cert/$1/ras/cert.pem > /data/cert/$1/ras/sct/comodo_mammoth.sct
   
   /root/.acme.sh/acme.sh \
+    --staging \
     --issue \
     --force \
     -d $1 \
@@ -61,10 +63,10 @@ gen_cert()
     --key-file /data/cert/$1/ecc/key.pem \
     --fullchain-file /data/cert/$1/ecc/cert.pem
  
-    echo "[$(date)]" [$1] Submit ECC certificate to COMODO sabre ct log server......
-    ct-submit sabre.ct.comodo.com < /data/cert/$1/ecc/cert.pem > /data/cert/$1/ecc/sct/comodo_sabre.sct
-    echo "[$(date)]" [$1] Submit ECC certificate to COMODO mammoth ct log server......
-    ct-submit mammoth.ct.comodo.com < /data/cert/$1/ecc/cert.pem > /data/cert/$1/ecc/sct/comodo_sabre.sct
+    #echo "[$(date)]" [$1] Submit ECC certificate to COMODO sabre ct log server......
+    #ct-submit sabre.ct.comodo.com < /data/cert/$1/ecc/cert.pem > /data/cert/$1/ecc/sct/comodo_sabre.sct
+    #echo "[$(date)]" [$1] Submit ECC certificate to COMODO mammoth ct log server......
+    #ct-submit mammoth.ct.comodo.com < /data/cert/$1/ecc/cert.pem > /data/cert/$1/ecc/sct/comodo_sabre.sct
 
   rm /configs/web/$1/$1.conf
 }
