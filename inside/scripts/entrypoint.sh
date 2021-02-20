@@ -99,7 +99,7 @@ while /bin/true; do
         exit 1;
     fi
 
-    sleep 60
+    sleep 5
 
   done
 
