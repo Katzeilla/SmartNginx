@@ -26,8 +26,8 @@ fi
 
   echo "[$(date)]" "Reading from" $DOMAIN_LIST
 
-while read i; do
-
-/scripts/init_site.sh $i
-
-done < $DOMAIN_LIST
+# disable SC2162 in shellcheck as backslash doesn't matter here
+# shellcheck disable=SC2162
+while read domain; do
+  /scripts/init_site.sh "$domain"
+done < "$DOMAIN_LIST"
