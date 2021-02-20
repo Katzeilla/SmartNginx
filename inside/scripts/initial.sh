@@ -4,7 +4,6 @@ DOMAIN_LIST=/configs/smartnginx/domain_list
 
 echo "[$(date)]" Installing nginx.conf......
 
-rm /usr/local/nginx/conf/nginx.conf
 ln -s /configs/nginx/nginx.conf /usr/local/nginx/conf/nginx.conf
 
 echo "[$(date)]" Installing cron task......

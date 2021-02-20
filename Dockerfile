@@ -96,7 +96,10 @@ RUN apt-get update && \
     apt autoremove -y && \
     apt clean && \
     mkdir /data/nginx/ && \
-    /usr/local/nginx/sbin/nginx -V
+    /usr/local/nginx/sbin/nginx -V && \
+    # remove default nginx.conf, a symlink to inside/configs/nginx/nginx.conf
+    # will be placed there instead so it can be modified from host.
+    rm /usr/local/nginx/conf/nginx.conf
 ENTRYPOINT ["/scripts/entrypoint.sh"]
 
 EXPOSE 80 443
