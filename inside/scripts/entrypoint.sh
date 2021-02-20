@@ -73,7 +73,7 @@ while /bin/true; do
    fi
 
     if [[ $nginx_status -ne 0 ]]; then
-        echo "[$date]" "Nginx exited with code $nginx_status"
+	echo "[$(date)]" "Nginx exited with code $nginx_status"
         (( nginx_restart_count++ ))
         if [ $nginx_restart_count -le 3 ]; then
         echo "[$(date)]" "Attempt to restart, this is the $nginx_restart_count/3 attempt"
