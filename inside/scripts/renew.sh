@@ -4,12 +4,12 @@ function renew() {
 
 DOMAIN_LIST=/configs/smartnginx/domain_list
 
-while read i; do
-    echo "[$(date)]" "Found domain name" $i
+while read domain; do
+    echo "[$(date)]" "Found domain name" "$domain"
 
-    echo "[$(date)]" [$i] Start renew......
+    echo "[$(date)]" [$domain] Start renew......
 
-    /scripts/gen_cert.sh $i renew
+    /scripts/gen_cert.sh "$domain" renew
 
 done < $DOMAIN_LIST
 
