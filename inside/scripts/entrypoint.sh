@@ -37,7 +37,6 @@ echo "[$(date)]" "Run initial script......"
 start_cron
 start_nginx
 
-
 nginx_restart_count=0
 cron_restart_count=0
 
@@ -50,8 +49,6 @@ reload_nginx()
         sleep 3
     done 
 }
-
-# auto_reload &
 
 health_check ()
 {
@@ -79,27 +76,18 @@ while /bin/true; do
         let nginx_restart_count++ 
         echo $date "Nginx exited with code $nginx_status"
         
-        # Avoid "4/3 attempt"
-        if [[ $nginx_restart_count < "4" ]]; then
+        if ![[ $nginx_restart_count > 3 ]]; then
         echo "[$(date)]" "Attempt to restart, this is the $nginx_restart_count/3 attempt"
         start_nginx
         fi
     fi
-
-
-   # echo $nginx_status
-   # echo $cron_status
-   # echo $nginx_restart_count
-   # echo $cron_status
-   # For debug
-
 
     if [[ $nginx_restart_count -gt 3 ]] || [[ $cron_restart_count -gt 3 ]]; then
         echo "[$(date)]" "Too many restart, exit now......"
         exit 1;
     fi
 
-    sleep 60
+    sleep 5 
 
   done
 
