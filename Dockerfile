@@ -6,8 +6,6 @@ VOLUME /configs
 
 VOLUME /data
 
-COPY /inside/configs/nginx/nginx.conf /usr/local/nginx/conf/
-
 RUN apt-get update && \
     apt-get install -y \
         --no-install-recommends \
