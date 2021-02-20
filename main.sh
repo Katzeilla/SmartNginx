@@ -22,6 +22,7 @@ show_usage()
         echo "./main [ACTION]"
         echo
         echo "ACTION:"
+        echo "staging                                  toggle staging mode"
         echo "pull                   pull the latest image from Docker Hub"
         echo "test                                ls all mount dir of host"
 	echo "network <network_name>		      Connect to a network"
@@ -43,6 +44,14 @@ elif [[ $1 == network ]]; then
         echo Connect to $2
     fi
 
+elif [[ $1 == staging ]];then
+	if [ -a "$dir/inside/configs/smartnginx/staging.flag" ]; then
+		touch "$dir/inside/configs/smartnginx/staging.flag"
+        	exit
+	else
+		rm "$dir/inside/configs/smartnginx/staging.flag"
+		exit
+	fi
 elif [[ $1 == pull ]];then
 	_pull
         exit
