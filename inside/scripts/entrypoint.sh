@@ -58,9 +58,9 @@ health_check ()
 
 while /bin/true; do
 
-    ps aux | grep nginx | grep -q -v grep
+    pgrep nginx
     nginx_status=$?
-    ps aux | grep cron | grep -q -v grep
+    pgrep cron
     cron_status=$?
 
     if [[ $cron_status -ne 0 ]]; then
