@@ -37,7 +37,7 @@ gen_cert()
   }
   
   if is_staging; then
-    _arg="$_arg --staging"
+    _arg="--staging"
   fi
 
     /root/.acme.sh/acme.sh \
@@ -62,8 +62,8 @@ gen_cert()
     fi
 
   /root/.acme.sh/acme.sh \
-    --issue \
     "$_arg" \
+    --issue \
     --force \
     -d $1 \
     -w /data/acme.sh/$1/challenges/ \
