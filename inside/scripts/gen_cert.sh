@@ -62,8 +62,8 @@ gen_cert()
     fi
 
   /root/.acme.sh/acme.sh \
-    --issue \
     "$_arg" \
+    --issue \
     --force \
     -d $1 \
     -w /data/acme.sh/$1/challenges/ \
