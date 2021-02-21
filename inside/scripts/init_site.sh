@@ -1,54 +1,54 @@
 #! /bin/bash
 
-i="$1"
+domain="$1"
 
-echo "[$(date)]" "Found domain name" $i
+echo "[$(date)]" "Found domain name" "$domain"
     
-  if [ -d /configs/web/$i ]; then
-    echo "[$(date)]" "Found config directory for '$i', skip mkdir"
+  if [ -d /configs/web/"$domain" ]; then
+    echo "[$(date)]" "Found config directory for $domain, skip mkdir"
   else
-    echo "[$(date)]" "Config directory for '$i' not found, create it......"
-    mkdir -p /configs/web/$i
+    echo "[$(date)]" "Config directory for $domain not found, create it......"
+    mkdir -p /configs/web/"$domain"
   fi
   
-  if [ -d /data/web/$i ]; then
-    echo "[$(date)]" "Found data directory for '$i', skip mkdir"
+  if [ -d /data/web/"$domain" ]; then
+    echo "[$(date)]" "Found data directory for $domain, skip mkdir"
   else
-    echo "[$(date)]" "Data directory for '$i' not found, create it......"
-    mkdir -p /data/web/$i
-    cp /data/template/index.html.template  /data/web/$i/index.html
+    echo "[$(date)]" "Data directory for $domain not found, create it......"
+    mkdir -p /data/web/"$domain"
+    cp /data/template/index.html.template  /data/web/"$domain"/index.html
 
   fi
   
-  if [ -d /logs/web/$i ]; then
-    echo "[$(date)]" "Log directory for '$i' found, skip mkdir"
+  if [ -d /logs/web/"$domain" ]; then
+    echo "[$(date)]" "Log directory for $domain found, skip mkdir"
   else
-    echo "[$(date)]" "Log directory for '$i' not found, create it......"
-    mkdir -p /logs/web/$i
+    echo "[$(date)]" "Log directory for $domain not found, create it......"
+    mkdir -p /logs/web/"$domain"
   fi
   
-  if [ -d /data/acme.sh/$i/challenges/.well-known/acme-challenge/ ]; then
-    echo "[$(date)]" "Found certificate directory for '$i', skip mkdir"
+  if [ -d /data/acme.sh/"$domain"/challenges/.well-known/acme-challenge/ ]; then
+    echo "[$(date)]" "Found certificate directory for $domain, skip mkdir"
   else
-    echo "[$(date)]" "acme-challenge directory for '$i' not found, create it......"
-    mkdir -p /data/acme.sh/$i/challenges/.well-known/acme-challenge/ 
+    echo "[$(date)]" "acme-challenge directory for $domain not found, create it......"
+    mkdir -p /data/acme.sh/"$domain"/challenges/.well-known/acme-challenge/ 
   fi
 
-  if [ -d /data/cert/$i/ras/sct -a -d /data/cert/$i/ecc/sct ]; then
-    echo "[$(date)]" "Found certificate directory for '$i', skip mkdir"
+  if [ -d /data/cert/"$domain"/ras/sct ] && [ -d /data/cert/"$domain"/ecc/sct ]; then
+    echo "[$(date)]" "Found certificate directory for $domain, skip mkdir"
   else
-    echo "[$(date)]" "Certificates directory for '$i' not found, create it......"
-    mkdir -p /data/cert/$i/ras/sct
-    mkdir -p /data/cert/$i/ecc/sct
+    echo "[$(date)]" "Certificates directory for $domain not found, create it......"
+    mkdir -p /data/cert/"$domain"/ras/sct
+    mkdir -p /data/cert/"$domain"/ecc/sct
   fi
     
-  if [ -f /configs/web/$i/$i_final.conf ]; then
-    echo "[$(date)]" "Found final config file for '$i', skip generate"
-    echo "[$(date)]" "Start issue cert for '$i'"
-    /scripts/gen_cert.sh $i
+  if [ -f /configs/web/"$domain"/"$domain"_final.conf ]; then
+    echo "[$(date)]" "Found final config file for $domain, skip generate"
+    echo "[$(date)]" "Start issue cert for $domain"
+    /scripts/gen_cert.sh "$domain"
   else
-    echo "[$(date)]" "Final config file for '$i' not found, generate it......"
-    /scripts/gen_cert.sh $i gen_initial_conf
+    echo "[$(date)]" "Final config file for $domain not found, generate it......"
+    /scripts/gen_cert.sh "$domain" gen_initial_conf
   fi
 
 
