@@ -17,6 +17,21 @@ _pull() {
   docker pull miaowo/smartnginx:"$VERSION"
 }
 
+_start() {
+  # shellcheck disable=SC2086
+  # $flag can't be double quoted
+  docker run -it \
+    -p 80:80 \
+    -p 443:443 \
+    --mount type=bind,source="$dir/configs/",target=/configs/ \
+    --mount type=bind,source="$dir/data/",target=/data/ \
+    --mount type=bind,source="$dir/scripts/",target=/scripts/ \
+    --mount type=bind,source="$dir/logs/",target=/logs/ \
+    --name smartnginx \
+    $flag \
+    smartnginx:"$VERSION"
+}
+
 show_usage()
 {
   echo "This is a bash script for manage SmartNginx"
@@ -36,6 +51,7 @@ show_usage()
 if [[ "$1" == debug ]]; then
   flag='--entrypoint /bin/bash'
   echo "[$(date)]" 'Debug Mode'
+  _start
 
 elif [[ "$1" == staging ]];then
   if [ -a "$dir/inside/configs/smartnginx/staging.flag" ]; then
@@ -71,17 +87,6 @@ elif [[ "$1" == --help ]] || [[ "$1" == -h ]] || [[ "$1" == help ]]; then
 
 elif [[ "$1" == start ]]; then
   echo "[$(date)]" 'Normal Mode'
-  # shellcheck disable=SC2086
-  # $flag can't be double quoted
-  docker run -it \
-    -p 80:80 \
-    -p 443:443 \
-    --mount type=bind,source="$dir/configs/",target=/configs/ \
-    --mount type=bind,source="$dir/data/",target=/data/ \
-    --mount type=bind,source="$dir/scripts/",target=/scripts/ \
-    --mount type=bind,source="$dir/logs/",target=/logs/ \
-    --name smartnginx \
-    $flag \
-    smartnginx:"$VERSION"
+  _start
 fi
 
