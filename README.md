@@ -1,6 +1,7 @@
 ## SmartNginx
 
 [![Docker Image CI](https://github.com/Katzeilla/SmartNginx/actions/workflows/docker-image.yml/badge.svg)](https://github.com/Katzeilla/SmartNginx/actions/workflows/docker-image.yml)
+[![ShellCheck](https://github.com/Katzeilla/SmartNginx/actions/workflows/shellcheck.yml/badge.svg)](https://github.com/Katzeilla/SmartNginx/actions/workflows/shellcheck.yml)
 
 > 基础功能已经可用，但没有任何错误处理机制，不建议使用, 除非你真的知道自己在做什么。
 
