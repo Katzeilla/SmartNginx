@@ -68,7 +68,7 @@ while true; do
   if [[ $cron_status -ne 0 ]]; then
       echo "[$(date)]" "cron exited with code $cron_status"
       (( cron_restart_count++ ))
-      if [ $cron_restart_count -le 3 ]; then
+      if [ "$cron_restart_count" -le 3 ]; then
         echo "[$(date)]" "Attempt to restart, this is the $cron_restart_count/3 attempt"
         start_cron
       fi
@@ -77,13 +77,13 @@ while true; do
   if [[ $nginx_status -ne 0 ]]; then
       echo "[$(date)]" "Nginx exited with code $nginx_status"
       (( nginx_restart_count++ ))
-      if [ $nginx_restart_count -le 3 ]; then
+      if [ "$nginx_restart_count" -le 3 ]; then
         echo "[$(date)]" "Attempt to restart, this is the $nginx_restart_count/3 attempt"
         start_nginx
       fi
   fi
 
-  if [[ $nginx_restart_count -gt 3 ]] || [[ $cron_restart_count -gt 3 ]]; then
+  if [[ "$nginx_restart_count" -gt 3 ]] || [[ $cron_restart_count -gt 3 ]]; then
       echo "[$(date)]" "Too many restart, exit now......"
       exit 1;
   fi

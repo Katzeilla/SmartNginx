@@ -11,7 +11,7 @@ fi
 (( run_count++ ))
 
 # Save new value of run_count to file
-echo $run_count > run_count
+echo "$run_count" > run_count
 
 nginx_signal()
 {
