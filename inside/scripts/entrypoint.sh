@@ -37,7 +37,7 @@ echo "[$(date)]" "Run initial script......"
 
 gen_dhparam ()
 {
-  if ![ -a /configs/smartnginx/dhparam.generated.flag ]; then
+  if ! [ -a /configs/smartnginx/dhparam.generated.flag ]; then
     echo "[$(date)]" "Generating a custom dhparams.pem with 2048 numbits in background......"
     echo "[$(date)]" "A pre-generated dhparams.pem with 2048 numbits will be used for now......"
     nice openssl dhparam -out /data/dhparam/dhparams.pem.custom 2048 > /dev/null
