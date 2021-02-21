@@ -1,4 +1,4 @@
-## SmartNginxhttps://github.com/Katzeilla/SmartNginx/blob/master/README.md
+## SmartNginx
 
 [![Docker Image CI](https://github.com/Katzeilla/SmartNginx/actions/workflows/docker-image.yml/badge.svg)](https://github.com/Katzeilla/SmartNginx/actions/workflows/docker-image.yml)
 
