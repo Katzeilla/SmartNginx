@@ -44,7 +44,7 @@ gen_cert()
     domain="$1"
 
     /root/.acme.sh/acme.sh \
-    "$_arg" \
+    $_arg \
     --issue \
     --force \
     -d "$domain" \
@@ -69,7 +69,7 @@ gen_cert()
     fi
 
   /root/.acme.sh/acme.sh \
-    "$_arg" \
+    $_arg \
     --issue \
     --force \
     -d "$domain" \
