@@ -44,7 +44,7 @@ cron_restart_count=0
 health_check ()
 {
 
-while /bin/true; do
+while true; do
 
   pgrep nginx > /dev/null
   nginx_status=$?
