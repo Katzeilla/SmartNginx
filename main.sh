@@ -1,6 +1,6 @@
 #! /bin/bash
 
-VERSION='v1.0.0'
+VERSION='latest'
 
 cd ./inside || (echo 'required directories not found' && exit)
 dir="$(pwd)"
@@ -47,6 +47,7 @@ elif [[ "$1" == staging ]];then
 
 elif [[ "$1" == pull ]];then
   _pull
+  docker tag miaowo/smartnginx smartnginx
   exit
 
 elif [[ "$1" == nginx ]];then
