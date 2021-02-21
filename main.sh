@@ -1,6 +1,7 @@
 #! /bin/bash
 
 VERSION='latest'
+flag=''
 
 cd ./inside || (echo 'required directories not found' && exit)
 dir="$(pwd)"
@@ -70,6 +71,8 @@ elif [[ "$1" == --help ]] || [[ "$1" == -h ]] || [[ "$1" == help ]]; then
 
 elif [[ "$1" == start ]]; then
   echo "[$(date)]" 'Normal Mode'
+  # shellcheck disable=SC2086
+  # $flag can't be double quoted
   docker run -it \
     -p 80:80 \
     -p 443:443 \
@@ -78,7 +81,7 @@ elif [[ "$1" == start ]]; then
     --mount type=bind,source="$dir/scripts/",target=/scripts/ \
     --mount type=bind,source="$dir/logs/",target=/logs/ \
     --name smartnginx \
-    "$flag" \
+    $flag \
     smartnginx:"$VERSION"
 fi
 
