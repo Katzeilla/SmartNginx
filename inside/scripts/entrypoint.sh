@@ -34,9 +34,23 @@ echo "[$(date)]" "Run initial script......"
 
 /scripts/initial.sh
 
+
+gen_dhparam ()
+{
+  if ![ -a /configs/smartnginx/dhparam.generated.flag ]; then
+    echo "[$(date)]" "Generating a custom dhparams.pem with 2048 numbits in background......"
+    echo "[$(date)]" "A pre-generated dhparams.pem with 2048 numbits will be used for now......"
+    nice openssl dhparam -out /data/dhparam/dhparams.pem.custom 2048 > /dev/null
+    echo "[$(date)]" "Switching to new dhparams.pem......"
+    mv /data/dhparam/dhparams.pem.custom /data/dhparam/dhparams.pem
+    /usr/local/nginx/sbin/nginx -s reload
+    touch /configs/smartnginx/dhparam.generated.flag
+  fi
+}
+
 start_cron
 start_nginx
-
+gen_dhparam &
 
 nginx_restart_count=0
 cron_restart_count=0
