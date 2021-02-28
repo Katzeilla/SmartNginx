@@ -81,12 +81,10 @@ elif [[ "$1" == shell ]]; then
   docker exec -it smartnginx bash
   exit
 
-elif [[ "$1" == --help ]] || [[ "$1" == -h ]] || [[ "$1" == help ]]; then
-  show_usage
-  exit
-
 elif [[ "$1" == start ]]; then
   echo "[$(date)]" 'Normal Mode'
   _start
-fi
 
+else
+  show_usage
+fi
