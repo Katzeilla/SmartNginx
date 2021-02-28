@@ -38,12 +38,13 @@ show_usage()
   echo "./main [ACTION]"
   echo
   echo "ACTION:"
-  echo "staging                                  toggle staging mode"
-  echo "pull                   pull the latest image from Docker Hub"
+  echo "start                                  Start container"
+  echo "staging                                toggle staging mode"
+  echo "pull                                   pull the latest image from Docker Hub"
   echo "nginx [stop|quit|reload|reopen]        Send signal to  Nginx"
-  echo "debug                                       Start in to bash"
-  echo "shell                  Attach shell of the running container"
-  echo "--help, -h ,help                           Show this message"
+  echo "debug                                  Start in to bash"
+  echo "shell                                  Attach shell of the running container"
+  echo "--help, -h ,help                       Show this message"
   echo
   echo "If no [ACTION], start normally"
 }
