@@ -29,7 +29,7 @@ _start() {
     --mount type=bind,source="$dir/logs/",target=/logs/ \
     --name smartnginx \
     $flag \
-    smartnginx:"$VERSION"
+    miaowo/smartnginx:"$VERSION"
 }
 
 show_usage()
